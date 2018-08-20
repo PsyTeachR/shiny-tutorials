@@ -11,12 +11,12 @@ output:
     number_sections: true
 ---
 
-In this tutorial, I'm going to walk you through the absolute basics of setting up a shiny app, starting with the example built into RStudio. I'm not going to explain yet how shiny apps are structured, the goal is to just get something up an running, and give you some familiarity with the layout of a fairly simple app.
+In this tutorial, I'm going to walk you through the absolute basics of setting up a shiny app, starting with the example built into RStudio. I'm not going to explain yet how shiny apps are structured, the goal is to just get something up and running, and give you some familiarity with the layout of a fairly simple app.
 
 * Knowledge: [Basic RStudio and R](https://gupsych.github.io/data_skills/01_intro.html)
 * Programs: [R](http://cran.r-project.org/mirrors.html) and [RStudio](https://www.rstudio.com/products/rstudio/download3/)
 * Packages: `shiny`, `ggplot2`
-* Time: ~ 15 minutes
+* Time: ~ 20 minutes
 
 # Create the Demo App
 
@@ -223,16 +223,150 @@ library(ggplot2)
 You can replace all of the code in the `renderPlot` function with the code below. 
 
 ```{r, ggplot, eval = F}
-   output$distPlot <- renderPlot({
-      ggplot(faithful, aes(waiting)) +
-        geom_histogram(bins = input$bins,
-                       fill = "steelblue3",
-                       colour = "grey30") +
-        xlab("What are we even plotting here?") +
-        theme_minimal()
-   })
+  output$distPlot <- renderPlot({
+    # create plot
+    ggplot(faithful, aes(waiting)) +
+      geom_histogram(bins = input$bins,
+                     fill = "steelblue3",
+                     colour = "grey30") +
+      xlab("What are we even plotting here?") +
+      theme_minimal()
+  })
 ```
 
 <p class="alert alert-info">You can set the `fill` and `colour` to whatever colours you like, and change `theme_minimal()` to one of the other [built-in ggplot themes](https://ggplot2.tidyverse.org/reference/ggtheme.html#examples).</p>
 
-<p class="alert alert-tryit">What *are* we even plotting here? Type `?faithful` into the console pane to see what the `waiting` column represents. Change the label on the x-axis to something more sensible.</p>
+<p class="alert alert-tryit">What *are* we even plotting here? Type `?faithful` into the console pane to see what the `waiting` column represents (`faithful` is a built-in demo dataset). Change the label on the x-axis to something more sensible.</p>
+
+# Adding New Things
+
+<input type="checkbox" class="progress">
+
+## Add a new input widget
+
+The `faithful` dataset includes two columns:`eruptions` and `waiting`. We've been plotting the `waiting` variable, but what if you wanted to plot the `eruptions` variable instead? 
+
+<p class="alert alert-tryit">Try plotting the eruption time (`eruptions`) instead of the waiting time. You just have to change one word in the `ggplot` function and update the x-axis label.</p>
+
+We can add another input widget to let the user switch between plotting eruption time and wait time. The [RStudio Shiny tutorial](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/) has a great overview of the different input options. We need to toggle between two otions, so we can use either radio buttons or a select box. Radio buttons are probably best if you have only a few options and the user will want to see them all at the same time to decide.
+
+Add the following code as the first argument to `sidebarPanel()`, which just takes a list of different [widgets](defs.html#widget). `radioButtons` is the widget we're using. The first argument is `display_var`, which we will use later in the code to find the value of this widget. The second argument is the label to display to the user. The next argument is `choices`, which is a list of choices in the format `c("label1" = "value1", "label2 = "value2", ...)`. The label is what gets shown to the user and the value is what gets used by the code (these can be the same, but you often want the user label to be more descriptive). The last argument is `selected`, which is the value of the default choice. Save this and re-run the app.
+
+```{r add-radiobuttons, eval = F}
+         radioButtons("display_var",
+                      "Which variable to display",
+                      choices = c("Waiting time to next eruption" = "waiting",
+                                  "Eruption time" = "eruptions"),
+                      selected = "waiting"
+         ),
+```
+
+
+![](images/01-first-app/08-radiobutton-widget.png)
+
+You should have a radio button interface now. You can click on the options to switch the button, but it won't do anything to your plot yet. We need to edit the plot-generating code to make that happen. 
+
+
+<input type="checkbox" class="progress">
+
+## Change what you're plotting
+
+First, we need to change the x-axis label depending on what we're graphing. We use an if/else statement to set the variable `xlabel` to one thing if `input$display_var` is equivalent to `"eruptions"`, and to something else if it's equivalent to `"waiting"`. Put this code at the very beginning of the code block for the `renderPlot` function (after the line `output$distPlot <- renderPlot({`).
+
+```{r plot-switch1, eval = F}
+      # set x-axis label depending on the value of display_var
+      if (input$display_var == "eruptions") {
+        xlabel <- "Waiting Time to Next Eruption (in minutes)"
+      } else if (input$display_var == "waiting") {
+        xlabel <- "Waiting Time to Next Eruption (in minutes)"
+      }
+```
+
+<p class="alert alert-warning">The double-equal-signs `==` means "equivalent to and is how you check if two things are the same; if you only use one equal sign, you set the variable on the left to the value on the right.</p>
+
+Then we have to edit the `ggplot` function to use the new label and to plot the right column. Notice that the function `aes(waiting)` from before has changed to `aes_string(input$display_var)`. The variable `input$display_var` gives you the user-input value of the widget called `display_var`. 
+
+```{r plot-switch2, eval = F}
+      # create plot
+      ggplot(faithful, aes_string(input$display_var)) +
+        geom_histogram(bins = input$bins,
+                       fill = "steelblue3",
+                       colour = "grey30") +
+        xlab(xlabel) +
+        theme_minimal()
+```
+
+<p class="alert alert-warning">The change from `aes` to `aes_string` is a quirk of `ggplot`; if you need to use [strings](defs.html#string) to specify the names of the columns to display, you have to use `aes_string`. The value of `display_var` is a string, so we have to do it this way.</p>
+
+Re-run your app and see if you can change the data and x-axis label with your new widget. If not, check that your code against the code below:
+
+```{r example-code, eval = F}
+#
+# This is a Shiny web application. You can run the application by clicking
+# the 'Run App' button above.
+#
+# Find out more about building applications with Shiny here:
+#
+#    http://shiny.rstudio.com/
+#
+
+library(shiny)
+library(ggplot2)
+
+# Define UI for application that draws a histogram
+ui <- fluidPage(
+
+   # Application title
+   titlePanel("My First App"),
+
+   p("I am explaining this perfectly"),
+
+   # Sidebar with a slider input for number of bins
+   sidebarLayout(
+      sidebarPanel(
+         radioButtons("display_var",
+                      "Which variable to display",
+                      choices = c("Waiting time to next eruption" = "waiting",
+                                  "Eruption time" = "eruptions"),
+                      selected = "waiting"
+         ),
+         sliderInput("bins",
+                     "Number of bins:",
+                     min = 10,
+                     max = 40,
+                     value = 25)
+      ),
+
+      # Show a plot of the generated distribution
+      mainPanel(
+         plotOutput("distPlot")
+      )
+   )
+)
+
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+
+    output$distPlot <- renderPlot({
+      # set x-axis label depending on the value of display_var
+      if (input$display_var == "eruptions") {
+        xlabel <- "Waiting Time to Next Eruption (in minutes)"
+      } else if (input$display_var == "waiting") {
+        xlabel <- "Waiting Time to Next Eruption (in minutes)"
+      }
+
+      # create plot
+      ggplot(faithful, aes_string(input$display_var)) +
+        geom_histogram(bins = input$bins,
+                       fill = "steelblue3",
+                       colour = "grey30") +
+        xlab(xlabel) +
+        theme_minimal()
+    })
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+
+```
+
