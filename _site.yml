@@ -1,0 +1,11 @@
+name: Shiny Tutorials
+output_dir: '.'
+author: Lisa DeBruine
+navbar:
+  title: Shiny Tutorials
+output:
+  html_document:
+    theme: flatly
+    css: shiny.css
+    lib_dir: site_libs
+    self_contained: no

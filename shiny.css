@@ -1,0 +1,38 @@
+
+input[type=checkbox].progress{
+  position: relative;
+  left: -40px;
+  top: 3.5em;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* set styles for alert boxes */
+
+.alert {
+  color: black;
+}
+
+.alert-danger {
+  background-color: #ffb8b8;
+}
+
+.alert-warning {
+  background-color: #fffad1;
+}
+
+.alert-info {
+  background-color: #c2e3ff;
+}
+
+.alert-tryit {
+  border-color: #6a4a91;
+  background-color: #dec2ff;
+}
+
+.alert-success {
+  background-color: #cfffcc;
+}

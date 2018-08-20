@@ -1,0 +1,42 @@
+---
+title: "Definitions"
+output:
+  html_document:
+    self_contained: no
+    toc: yes
+    toc_depth: 3
+    toc_float: 
+      collapsed: false
+---
+
+### argument
+
+A variable that provides input to a *function*. 
+
+### function
+
+A named section of code that can be reused. For example, `sd` is a function that returns the standard deviation of the [vector](defs.html#vector) of numbers that you provide as the input [argument](defs.html#argument). Functions are set up like this: `function_name(argument1 = a1, argument2 = a2)`. The [argument](defs.html#argument)s in parentheses can be named (like, `x = c(1,3,5,8)`) or you can skip the names if you put them in the exact same order that they're defined in the function. You can check this by typing `?sd` (or whatever function name you're looking up) into the console and the Help pane will show you the default order under **Usage**.
+
+![](images/defs/function-sd-help.png)
+
+### package
+
+Many useful functions are built into R and available by default whenever you start it up. But some of the most powerful things you can do with R require packages of functions that are written by the community. The functions in these packages aren't available until you install the package (using `install.packages("package_name")` or clicking Install on the Packages pane; this only needs to be done if the package isn't already installed). Once that package is installed (kind of like downloading an app to your phone), you can use it in any script by loading that package as a library at the top of your script (e.g., (`library(ggplot2)`). 
+
+<p class="alert alert-info">You can alternatively type the package name and two colons before any function from that package to use it without loading all of its functions into the library (e.g., `ggplot2::geom_histogram()`). This sort of notation is also used to disambiguate function names if two packages have functions with the same names.</p>
+
+### panes
+
+RStudio is arranged with four window "panes". By default, the upper left pane is the *source pane*, where you view and edit source code from files. The bottom left pane is usually the *console pane*, where you can type in commands and view output messages You can change the location of panes and what tabs are shown
+
+![](images/defs/panes.png)
+
+### string
+
+A piece of text inside of quotes. For example, `"I sense the rains down in Africa"` is a string. Numbers inside of quotes can be a string; `"19"` is a string, while `19` is not.
+
+### vector
+
+
+
+
