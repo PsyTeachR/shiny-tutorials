@@ -1,5 +1,5 @@
 name: Shiny Tutorials
-output_dir: '.'
+output_dir: 'docs'
 author: Lisa DeBruine
 navbar:
   title: Shiny Tutorials
