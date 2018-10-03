@@ -395,8 +395,8 @@ As always, run your app after every unit of changes. It’s easier to catch typo
   )</code></pre>
 </div>
 </div>
-<div id="add-input-control-widgets" class="section level1">
-<h1><span class="header-section-number">2</span> Add Input Control Widgets</h1>
+<div id="add-input-and-output" class="section level1">
+<h1><span class="header-section-number">2</span> Add Input and Output</h1>
 <p><input type="checkbox" class="progress"></p>
 <div id="sliderinput" class="section level2">
 <h2><span class="header-section-number">2.1</span> sliderInput</h2>
@@ -409,10 +409,11 @@ As always, run your app after every unit of changes. It’s easier to catch typo
 <p class="alert alert-info">
 I use periods/full stops (<code>.</code>) to indent the document outline comments.
 </p>
+<p><input type="checkbox" class="progress"></p>
 </div>
 <div id="actionbutton" class="section level2">
 <h2><span class="header-section-number">2.2</span> actionButton</h2>
-<p>We want the user to be able to create a new simulated dataset, so we can make a button that generates a new dataset, graphs it, and resets the effect size slider. Add this widget function after the <code>sliderInput</code> widget function.</p>
+<p>We want the user to be able to create a new simulated dataset, so we can make a button that generates a new dataset, graphs it, and resets the effect size slider. Add this widget function after the <code>sliderInput</code> widget function (and run the app).</p>
 <pre class="r"><code>    sidebarPanel(
       # . . d_guess slide ----
       sliderInput(&quot;d_guess&quot;, &quot;My effect size (d) guess&quot;,
@@ -438,6 +439,16 @@ Stack trace (innermost first):
     1: runApp
 Error : Error sourcing /Users/lisad/apps/custom-app/app.R</code></pre>
 </div>
+<p><input type="checkbox" class="progress"></p>
+</div>
+<div id="textoutput" class="section level2">
+<h2><span class="header-section-number">2.3</span> textOutput</h2>
+<p>Outputs normally go in the main panel (although they don’t have to). You can use the function <code>textOutput</code> to interactively display some text to the user. We want to let people know how many observations are in the randomly generated data, so we’ll use a <code>textOutput</code> function with the ID <code>&quot;current_n&quot;</code>.</p>
+<pre class="r"><code>    mainPanel(
+      # . . current_n output ----
+      textOutput(&quot;current_n&quot;)
+    )</code></pre>
+<p>When you run this, you’ll see that it doesn’t actually show anything. That’s because</p>
 </div>
 </div>
 
