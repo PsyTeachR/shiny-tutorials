@@ -11,7 +11,7 @@ output:
     number_sections: true
 ---
 
-In this tutorial, I'm going to walk you through the absolute basics of setting up a shiny app, starting with the example built into RStudio. I'm not going to explain yet how shiny apps are structured, the goal is to just get something up and running, and give you some familiarity with the layout of a fairly simple app.
+In this tutorial, I'm going to walk you through the basics of setting up a shiny app, starting with the example built into RStudio. I'm not going to explain yet how shiny apps are structured, the goal is to just get something up and running, and give you some familiarity with the layout of a fairly simple app.
 
 * Knowledge: [Basic RStudio and R](https://gupsych.github.io/data_skills/01_intro.html)
 * Programs: [R](http://cran.r-project.org/mirrors.html) and [RStudio](https://www.rstudio.com/products/rstudio/download3/)

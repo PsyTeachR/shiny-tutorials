@@ -302,7 +302,21 @@ div.tocify {
 
 <div id="argument" class="section level3">
 <h3>argument</h3>
-<p>A variable that provides input to a <em>function</em>.</p>
+<p>A variable that provides input to a [function(defs.html#function).</p>
+</div>
+<div id="chunk" class="section level3">
+<h3>chunk</h3>
+<p>In an RMarkdown file (<code>.Rmd</code>), you can include a block (or “chunk”) of R code by surrounding the code as in the example below:</p>
+<pre><code>```{r chunk-name}
+
+mean_age <- mean(ages) %>% round(2)
+
+```</code></pre>
+</div>
+<div id="comment" class="section level3">
+<h3>comment</h3>
+<p>You can annotate <code>.R</code> files or <a href="defs.html#chunk">chunks</a> in <code>.Rmd</code> files with comments by prefacing each line of the coment with one or more hash symbols (<code>#</code>).</p>
+<p>Comments get added to the document outline if you put four or more dashes, equal signs, or hashes at the end. This is a great way to keep track of more complicated scripts.</p>
 </div>
 <div id="function" class="section level3">
 <h3>function</h3>

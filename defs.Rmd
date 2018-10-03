@@ -11,7 +11,23 @@ output:
 
 ### argument
 
-A variable that provides input to a *function*. 
+A variable that provides input to a [function(defs.html#function). 
+
+### chunk
+
+In an RMarkdown file (`.Rmd`), you can include a block (or "chunk") of R code by surrounding the code as in the example below:
+
+<pre><code>```{r chunk-name}
+
+mean_age <- mean(ages) %>% round(2)
+
+```</code></pre>
+
+### comment
+
+You can annotate `.R` files or [chunks](defs.html#chunk) in `.Rmd` files with comments by prefacing each line of the coment with one or more hash symbols (`#`).
+
+Comments get added to the document outline if you put four or more dashes, equal signs, or hashes at the end. This is a great way to keep track of more complicated scripts.
 
 ### function
 

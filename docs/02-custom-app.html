@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Second Shiny App</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="shiny.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Shiny Tutorials</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Second Shiny App</h1>
+
+</div>
+
+
+<p>In this tutorial, we’re going to start with the blank framework for a shiny app. We will add some text, input control <a href="defs.html#widget">widgets</a>, output text, and an output plot.</p>
+<ul>
+<li>Knowledge: <a href="https://gupsych.github.io/data_skills/01_intro.html">Basic RStudio and R</a>, can make an RStudio project, run the RStudio demo shiny app and make minor edits (see <a href="01-first-app.html">first shiny app</a> for a tutorial)</li>
+<li>Programs: <a href="http://cran.r-project.org/mirrors.html">R</a> and <a href="https://www.rstudio.com/products/rstudio/download3/">RStudio</a></li>
+<li>Packages: <code>shiny</code>, <code>ggplot2</code>, <code>dplyr</code></li>
+<li>Time: ~ 20 minutes</li>
+</ul>
+<div id="create-a-framework-app" class="section level1">
+<h1><span class="header-section-number">1</span> Create a Framework App</h1>
+<p><input type="checkbox" class="progress"></p>
+<div id="set-up-the-project" class="section level2">
+<h2><span class="header-section-number">1.1</span> Set up the project</h2>
+<p>See the <a href="01-first-app.html">first tutorial</a> for how to do this. Name it <code>effect_guess</code>.</p>
+<p><input type="checkbox" class="progress"></p>
+</div>
+<div id="add-blank-framework" class="section level2">
+<h2><span class="header-section-number">1.2</span> Add blank framework</h2>
+<p>If you set up a default Shiny project in RStudio, it will create a file called <code>app.R</code> with the demo app. Replace the text (or delete the file and create a new file called <code>app.R</code>) with the framework below. Save it and run the app.</p>
+<pre class="r"><code># Libraries ----
+library(shiny)
+
+# Define UI ----
+ui &lt;- fluidPage(
+
+  # . Application title ----
+  titlePanel(&quot;Title&quot;),
+
+  # . Explanatory text ----
+  p(&quot;Put your explanatory text here. Do not forget this or people won&#39;t know how to use your app!&quot;),
+
+  sidebarLayout(
+    # . Sidebar ----
+    sidebarPanel(
+      p(&quot;Sidebar text...&quot;)
+    ),
+
+    # . Main Panel ----
+    mainPanel(
+      p(&quot;Main panel text...&quot;)
+    )
+  )
+)
+
+# Define server logic ----
+server &lt;- function(input, output, session) {
+}
+
+# Run the application ----
+shinyApp(ui = ui, server = server)</code></pre>
+<p class="alert alert-info">
+In RStudio, you can display the document outline using <code>shift-cmd-O</code> or by clicking on the outline icon at the top right of the <a href="defs.html#panes">source pane</a>. <a href="defs.html#commment">Comments</a> get added to the outline if you put four or more dashes, equal signs, or hashes at the end. This is a great way to keep track of more complicated scripts.
+</p>
+<p><input type="checkbox" class="progress"></p>
+</div>
+<div id="replace-default-text" class="section level2">
+<h2><span class="header-section-number">1.3</span> Replace default text</h2>
+<p>In this app, we’re going to show a plot with a random effect size for a between-group design with a random N and ask the user to guess the effect size). So the first thing you should do is explain what your app is doing in the explanatory text. You can also add a title.</p>
+<p class="alert alert-info">
+As always, run your app after every unit of changes. It’s easier to catch typos and mistakes if you’ve only changed a little bit since the last time you successfully ran the app.
+</p>
+<pre class="r"><code>  # . Application title ----
+  titlePanel(&quot;Guess the Effect Size&quot;),
+
+  # . Explanatory text ----
+  p(&quot;This app will show you a graph of simulated data with a random number of observations in each of two groups and a random effect size. The effect size will be between -3 and 3, your job is to guess the size of the effect.&quot;),</code></pre>
+<p>The framework we’re using here is a <code>sidebarLayout</code>. This <a href="defs.html#function">function</a> takes two <a href="defs.html#argument">arguments</a>, the <code>sidebarPanel</code> and the <code>mainPanel</code>. Usually, the sidebar panel contains all of the control <a href="defs.html#widget">widgets</a> that the user can set, and the main panel contains the output result, like some text or a graph generated using the input settings.</p>
+<p>Add some explanatory text to the sidebar and/or main panels by editing the relevant paragraph functions (<code>p()</code>), or delete these if you don’t need any static text.</p>
+<pre class="r"><code>  sidebarLayout(
+    # . Sidebar ----
+    sidebarPanel(
+    ),
+
+    # . Main Panel ----
+    mainPanel(
+    )
+  )</code></pre>
+</div>
+</div>
+<div id="add-input-control-widgets" class="section level1">
+<h1><span class="header-section-number">2</span> Add Input Control Widgets</h1>
+<p><input type="checkbox" class="progress"></p>
+<div id="sliderinput" class="section level2">
+<h2><span class="header-section-number">2.1</span> sliderInput</h2>
+<p>We’re going to use the <code>sliderInput</code> function to let the user guess the effect size in the plot.</p>
+<pre class="r"><code>    sidebarPanel(
+      # . . d_guess slide ----
+      sliderInput(&quot;d_guess&quot;, &quot;My effect size (d) guess&quot;,
+                  min = -3, max = 3, value = 0, step = 0.1)
+    ),</code></pre>
+<p class="alert alert-info">
+I use periods/full stops (<code>.</code>) to indent the document outline comments.
+</p>
+</div>
+<div id="actionbutton" class="section level2">
+<h2><span class="header-section-number">2.2</span> actionButton</h2>
+<p>We want the user to be able to create a new simulated dataset, so we can make a button that generates a new dataset, graphs it, and resets the effect size slider. Add this widget function after the <code>sliderInput</code> widget function.</p>
+<pre class="r"><code>    sidebarPanel(
+      # . . d_guess slide ----
+      sliderInput(&quot;d_guess&quot;, &quot;My effect size (d) guess&quot;,
+                  min = -3, max = 3, value = 0, step = 0.1),
+      # . . new_sim button ----
+      actionButton(&quot;new_sim&quot;, &quot;Simulate a new dataset&quot;)
+    ),</code></pre>
+<div class="alert alert-warning">
+<p>
+Don’t forget to separate the two widget functions with commas. They are both arguments to the <code>sidebarPanel</code> function, so you will get a confusing-looking error message like the one below if you leave out the comma. The first thing you should do with these error messages is to scan for line numbers and look at these lines and the lines before and after them.
+</p>
+<pre><code>Listening on http://127.0.0.1:5327
+Error in parse(file, keep.source = FALSE, srcfile = src, encoding = enc) : 
+  /Users/lisad/apps/custom-app/app.R:20:7: unexpected symbol
+19:       # . . new_sim button ----
+20:       actionButton
+          ^
+Possible missing comma at:
+20:      actionButton("new_sim", "Simulate a new dataset")
+         ^
+Warning: Error in sourceUTF8: Error sourcing /Users/lisad/apps/custom-app/app.R
+Stack trace (innermost first):
+    1: runApp
+Error : Error sourcing /Users/lisad/apps/custom-app/app.R</code></pre>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
