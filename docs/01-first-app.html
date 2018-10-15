@@ -95,6 +95,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -542,7 +545,7 @@ What <em>are</em> we even plotting here? Type <code>?faithful</code> into the co
 <p class="alert alert-tryit">
 Try plotting the eruption time (<code>eruptions</code>) instead of the waiting time. You just have to change one word in the <code>ggplot</code> function and update the x-axis label.
 </p>
-<p>We can add another input widget to let the user switch between plotting eruption time and wait time. The <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/">RStudio Shiny tutorial</a> has a great overview of the different input options. We need to toggle between two otions, so we can use either radio buttons or a select box. Radio buttons are probably best if you have only a few options and the user will want to see them all at the same time to decide.</p>
+<p>We can add another input widget to let the user switch between plotting eruption time and wait time. The <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/">RStudio Shiny tutorial</a> has a great overview of the different input options. We need to toggle between two options, so we can use either radio buttons or a select box. Radio buttons are probably best if you have only a few options and the user will want to see them all at the same time to decide.</p>
 <p>Add the following code as the first argument to <code>sidebarPanel()</code>, which just takes a list of different <a href="defs.html#widget">widgets</a>. <code>radioButtons</code> is the widget we’re using. The first argument is <code>display_var</code>, which we will use later in the code to find the value of this widget. The second argument is the label to display to the user. The next argument is <code>choices</code>, which is a list of choices in the format <code>c(&quot;label1&quot; = &quot;value1&quot;, &quot;label2 = &quot;value2&quot;, ...)</code>. The label is what gets shown to the user and the value is what gets used by the code (these can be the same, but you often want the user label to be more descriptive). The last argument is <code>selected</code>, which is the value of the default choice. Save this and re-run the app.</p>
 <pre class="r"><code>         radioButtons(&quot;display_var&quot;,
                       &quot;Which variable to display&quot;,
@@ -562,7 +565,7 @@ Try plotting the eruption time (<code>eruptions</code>) instead of the waiting t
 <p>First, we need to change the x-axis label depending on what we’re graphing. We use an if/else statement to set the variable <code>xlabel</code> to one thing if <code>input$display_var</code> is equivalent to <code>&quot;eruptions&quot;</code>, and to something else if it’s equivalent to <code>&quot;waiting&quot;</code>. Put this code at the very beginning of the code block for the <code>renderPlot</code> function (after the line <code>output$distPlot &lt;- renderPlot({</code>).</p>
 <pre class="r"><code>      # set x-axis label depending on the value of display_var
       if (input$display_var == &quot;eruptions&quot;) {
-        xlabel &lt;- &quot;Waiting Time to Next Eruption (in minutes)&quot;
+        xlabel &lt;- &quot;Eruption Time (in minutes)&quot;
       } else if (input$display_var == &quot;waiting&quot;) {
         xlabel &lt;- &quot;Waiting Time to Next Eruption (in minutes)&quot;
       }</code></pre>

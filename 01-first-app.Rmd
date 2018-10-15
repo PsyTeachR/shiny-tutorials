@@ -248,7 +248,7 @@ The `faithful` dataset includes two columns:`eruptions` and `waiting`. We've bee
 
 <p class="alert alert-tryit">Try plotting the eruption time (`eruptions`) instead of the waiting time. You just have to change one word in the `ggplot` function and update the x-axis label.</p>
 
-We can add another input widget to let the user switch between plotting eruption time and wait time. The [RStudio Shiny tutorial](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/) has a great overview of the different input options. We need to toggle between two otions, so we can use either radio buttons or a select box. Radio buttons are probably best if you have only a few options and the user will want to see them all at the same time to decide.
+We can add another input widget to let the user switch between plotting eruption time and wait time. The [RStudio Shiny tutorial](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/) has a great overview of the different input options. We need to toggle between two options, so we can use either radio buttons or a select box. Radio buttons are probably best if you have only a few options and the user will want to see them all at the same time to decide.
 
 Add the following code as the first argument to `sidebarPanel()`, which just takes a list of different [widgets](defs.html#widget). `radioButtons` is the widget we're using. The first argument is `display_var`, which we will use later in the code to find the value of this widget. The second argument is the label to display to the user. The next argument is `choices`, which is a list of choices in the format `c("label1" = "value1", "label2 = "value2", ...)`. The label is what gets shown to the user and the value is what gets used by the code (these can be the same, but you often want the user label to be more descriptive). The last argument is `selected`, which is the value of the default choice. Save this and re-run the app.
 
@@ -276,7 +276,7 @@ First, we need to change the x-axis label depending on what we're graphing. We u
 ```{r plot-switch1, eval = F}
       # set x-axis label depending on the value of display_var
       if (input$display_var == "eruptions") {
-        xlabel <- "Waiting Time to Next Eruption (in minutes)"
+        xlabel <- "Eruption Time (in minutes)"
       } else if (input$display_var == "waiting") {
         xlabel <- "Waiting Time to Next Eruption (in minutes)"
       }
