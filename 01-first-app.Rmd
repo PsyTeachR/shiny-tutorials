@@ -16,7 +16,7 @@ In this tutorial, I'm going to walk you through the basics of setting up a shiny
 * Knowledge: [Basic RStudio and R](https://gupsych.github.io/data_skills/01_intro.html)
 * Programs: [R](http://cran.r-project.org/mirrors.html) and [RStudio](https://www.rstudio.com/products/rstudio/download3/)
 * Packages: `shiny`, `ggplot2`
-* Time: ~ 20 minutes
+* Time: ~ 30 minutes
 
 # Create the Demo App
 
@@ -139,7 +139,7 @@ Click `Run App` (or `Reload App` if you haven't closed the app window) in the [s
 
 ## Change the input
 
-Find the function `sliderInput` (line 21). The first [argument](defs.html#argument) is the name you can use in the code to find the value of this input, so don't change it just yet. The second argument is the text that displays before the slider. Change this to something else and re-run the app.
+Find the function `sliderInput` (line 21). The first [argument](defs.html#argument) is the name you can use in the code to find the value of this input, so don't change it just yet. The second [argument](defs.html#argument) is the text that displays before the slider. Change this to something else and re-run the app.
 
 ```{r, app-sliderInput, eval = F}
          sliderInput("bins",
@@ -213,7 +213,7 @@ I like `steelblue3`, as it's pretty close to the shiny intereface default colour
 
 ## Change the plot style
 
-I prefer `ggplot` graphs, so let's make the plot with `geom_histogram` instead of `hist` (which is a great function for really quick plots). Since we need several functions from the `ggplot` [package](defs.html#package), we'll need to load that package at the top of the script, just under where the `shiny` package is loaded:
+I prefer `ggplot` graphs, so let's make the plot with `geom_histogram` instead of `hist` (which is a great function for really quick plots). Since we need several functions from the `ggplot2` [package](defs.html#package), we'll need to load that package at the top of the script, just under where the `shiny` package is loaded:
 
 ```{r load-library, eval = F}
 library(shiny)

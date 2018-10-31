@@ -1,0 +1,730 @@
+---
+title: "Data Input"
+output:
+  html_document:
+    self_contained: no
+    toc: yes
+    toc_depth: 2
+    code_folding: show
+    toc_float: 
+      collapsed: false
+    number_sections: true
+---
+
+```{r, echo = F}
+library(shiny)
+```
+
+
+## Resources
+
+* [Shiny Widgets Gallery](http://shiny.rstudio.com/gallery/widget-gallery.html)  
+* [shinyapps.io](http://www.shinyapps.io/)  
+
+
+## Try the demo
+
+Go to the [demo questionnaire](https://debruine.shinyapps.io/datacollect/) and fill out the brief survey.
+
+## Your first input app
+
+Create a new RStudio project for your data input apps.
+
+Copy the following code to a new file and save it as `app.R` in a new directory in this project named `inputdemo`. Also create a directory named `responses` inside the `inputdemo` directory. Run the app with `runApp('inputdemo')`.
+
+```{r, eval = F}
+library(shiny)
+library(ggplot2)
+
+outputDir <- "responses"
+
+# Define the fields we want to save from the form
+fields <- c("name", "used_shiny", "r_num_years")
+
+saveData <- function(input) {
+  # put variables in a data frame
+  data <- data.frame(matrix(nrow=1,ncol=0))
+  for (x in fields) {
+    var <- input[[x]]
+    if (length(var) > 1 ) {
+      # handles lists from checkboxGroup and multiple Select
+      data[[x]] <- list(var)
+    } else {
+      # all other data types
+      data[[x]] <- var
+    }
+  }
+  data$submit_time <- date()
+    
+  # Create a unique file name
+  fileName <- sprintf(
+    "%s_%s.rds", 
+    as.integer(Sys.time()), 
+    digest::digest(data)
+  )
+  
+  # Write the file to the local system
+  saveRDS(
+    object = data,
+    file = file.path(outputDir, fileName)
+  )
+}
+
+loadData <- function() {
+  # read all the files into a list
+  files <- list.files(outputDir, full.names = TRUE)
+  
+  if (length(files) == 0) {
+    # create empty data frame with correct columns
+    field_list <- c(fields, "submit_time")
+    data <- data.frame(matrix(ncol = length(field_list), nrow = 0))
+    names(data) <- field_list
+  } else {
+    data <- lapply(files, function(x) readRDS(x)) 
+    
+    # Concatenate all data together into one data.frame
+    data <- do.call(rbind, data)
+  }
+  
+  data
+}
+
+deleteData <- function() {
+  # Read all the files into a list
+  files <- list.files(outputDir, full.names = TRUE)
+  
+  lapply(files, file.remove)
+}
+
+resetForm <- function(session) {
+  # reset values
+  updateTextInput(session, "name", value = "")
+  updateCheckboxInput(session, "used_shiny", value = FALSE)
+  updateSliderInput(session, "r_num_years", value = 0)
+}
+
+ui <- fluidPage(
+  
+  # App title ----
+  titlePanel("Data Collection & Feedback"),
+  
+  # Sidebar layout with input and output definitions ----
+  sidebarLayout(
+    
+    # Sidebar panel for inputs ----
+    sidebarPanel(
+      textInput("name", "Name", ""),
+      checkboxInput("used_shiny", "I've built a Shiny app before", FALSE),
+      sliderInput("r_num_years", "Number of years using R",
+                  0, 10, 0, ticks = FALSE),
+      actionButton("submit", "Submit"),
+      actionButton("clear", "Clear Form"),
+      downloadButton("downloadData", "Download"),
+      actionButton("delete", "Delete All Data")
+    ),
+    
+    # Main panel for displaying outputs ----
+    mainPanel(
+      plotOutput(outputId = "yearsPlot"),
+      tags$hr(),
+      dataTableOutput("responses")
+    )
+  )
+)
+
+server = function(input, output, session) {
+  
+  # When the Submit button is clicked, save the form data
+  observeEvent(input$submit, {
+    saveData(input)
+    resetForm(session)
+  })
+  
+  observeEvent(input$clear, {
+    resetForm(session)
+  })
+  
+  # When the Delete button is clicked, delete all of the saved data files
+  observeEvent(input$delete, {
+    deleteData()
+  })
+  
+  # Show the previous responses in a reactive table ----
+  output$responses <- renderDataTable({
+    # update with current response when Submit or Delete are clicked
+    input$submit 
+    input$delete
+
+    loadData()
+  })
+  
+  # Downloadable csv of selected dataset ----
+  output$downloadData <- downloadHandler(
+    filename = "data.csv",
+    content = function(file) {
+      write.csv(loadData(), file, row.names = FALSE, quote= TRUE)
+    }
+  )
+  
+  output$yearsPlot <- renderPlot({
+    input$submit
+    input$delete
+    
+    data <- loadData()
+    
+    ggplot(data) +
+      geom_histogram(
+        aes(r_num_years), 
+        binwidth = 1, 
+        color = "black", 
+        fill = "white"
+      ) +
+      scale_x_continuous(
+        name = "Number of years using R", 
+        breaks = 0:10,
+        limits = c(-0.5, 10.5)
+      ) + 
+      theme_minimal() +
+      theme(
+        text = element_text(family = "Helvetica", size = 20),
+        plot.background = element_rect(fill = "white"),
+        panel.grid = element_blank(),
+        axis.title.y = element_blank()
+      )
+  })
+}
+
+shinyApp(ui, server)
+
+```
+
+## Step-by-step
+
+### Framework
+
+This framework gives you a full-page questionnaire with no feedback panel. You can use this framework or the one above.
+
+```{r full-framework, eval = F}
+library(shiny)
+library(ggplot2)
+
+outputDir <- "responses"
+
+# Define the fields we want to save from the form
+fields <- c("text_demo", 
+            "select_demo", 
+            "password_demo", 
+            "textarea_demo", 
+            "slider_demo", 
+            "checkbox_demo", 
+            "cbgroup_demo", 
+            "date_demo", 
+            "daterange_demo", 
+            "number_demo")
+
+saveData <- function(input) {
+  # put variables in a data frame
+  data <- data.frame(matrix(nrow=1,ncol=0))
+  for (x in fields) {
+    var <- input[[x]]
+    if (length(var) > 1 ) {
+      # handles lists from checkboxGroup and multiple Select
+      data[[x]] <- list(var)
+    } else {
+      # all other data types
+      data[[x]] <- var
+    }
+  }
+  data$submit_time <- date()
+  
+  # Create a unique file name
+  fileName <- sprintf(
+    "%s_%s.rds", 
+    as.integer(Sys.time()), 
+    digest::digest(data)
+  )
+  
+  # Write the file to the local system
+  saveRDS(
+    object = data,
+    file = file.path(outputDir, fileName)
+  )
+}
+
+loadData <- function() {
+  # read all the files into a list
+  files <- list.files(outputDir, full.names = TRUE)
+  
+  if (length(files) == 0) {
+    # create empty data frame with correct columns
+    field_list <- c(fields, "submit_time")
+    data <- data.frame(matrix(ncol = length(field_list), nrow = 0))
+    names(data) <- field_list
+  } else {
+    data <- lapply(files, function(x) readRDS(x)) 
+    
+    # Concatenate all data together into one data.frame
+    data <- do.call(rbind, data)
+  }
+  
+  data
+}
+
+# Define questions
+select_demo <- selectInput(
+  "select_demo", 
+  "Complete these famous lyrics:  
+  \"I ***** ***** ***** down in Africa\"", 
+  c("", 
+    "bless the waves", 
+    "sense the rain", 
+    "bless the rain", 
+    "guess it rains"
+  )
+)
+
+radio_demo <- radioButtons(
+  "radio_demo", 
+  "Do you like Toto?",
+  c("yes", "no"), 
+  inline = TRUE
+)
+
+checkbox_demo <- checkboxInput("checkbox_demo", "I consent to more 80s music references")
+
+cbgroup_demo <- checkboxGroupInput(
+  "cbgroup_demo", 
+  "Which artists had a UK number one single in the 80s?",
+  c("Pat Benatar" = "pb",
+    "Toto" = "toto",
+    "Blondie" = "blon",           # atomic 1980-03-01
+    "Kraftwerk" = "kw",           # computer love 1982-02-06
+    "Dog Faced Hermans" = "dfh",
+    "Eurythmics" = "eur",         # there must be an angel 1985-07-27
+    "T'Pau" = "tpau"              # china in your hand 1987-11-14
+  )
+)
+
+number_demo <- numericInput(
+  "number_demo", 
+  "How many UK number one songs did Madonna have in the 80s?", 
+  min = 0, max = 20, step = 1, value = 0 # answer = 6
+)
+
+slider_demo <- sliderInput(
+  "slider_demo", 
+  "How would you rate the 80s musically, on a scale from 0-100?",
+  min = 0, max = 100, step = 1, value = 50
+)
+
+date_demo <- dateInput(
+  "date_demo", 
+  "Africa by Toto reached its peak position of #3 in the UK charts on what date?",
+  min = "1980-01-01", max = "1989-12-31", startview="decade"
+  # right answer is 1983-02-26
+)
+
+daterange_demo <- dateRangeInput(
+  "daterange_demo", 
+  "What was the full UK Top 100 chart run of Africa by Toto?",
+  min = "1980-01-01", max = "1989-12-31", startview="decade"
+  # right answer is 1983-01-29 to 1983-04-09
+)
+
+text_demo <- textInput("text_demo", "What is your favourite 80s band?")
+textarea_demo <- textAreaInput("textarea_demo", "What do you think about this exercise?")
+password_demo <- passwordInput("password_demo", "Tell me a secret.")
+action_demo <- actionButton("clear", "Clear Form")
+download_demo <- downloadButton("download", "Download")
+file_demo <- fileInput("file_demo", "Upload a PDF", accept = "pdf")
+help_demo <- helpText("You can write help text in your form this way")
+
+
+resetForm <- function(session) {
+  updateTextInput(session, "text_demo", value = "")
+  updateSelectInput(session, "select_demo", selected=character(0))
+  updateRadioButtons(session, "radio_demo", selected = "yes")
+  updateCheckboxInput(session, "checkbox_demo", value = FALSE)
+  updateCheckboxGroupInput(session, "cbgroup_demo", selected=character(0))
+  updateTextAreaInput(session, "textarea_demo", value = "")
+  updateTextInput(session, "password_demo", value = "")
+  updateSliderInput(session, "slider_demo", value = 50)
+  updateDateInput(session, "date_demo", value = NA)
+  updateDateRangeInput(session, "daterange_demo", start = NA, end = NA)
+  updateNumericInput(session, "number_demo", value = 0)
+}
+
+# Set up questionnaire interface ----
+ui <- fluidPage(
+  title = "Questionnaire Framework",
+  # CSS ----
+  # stop the default input containers being 300px, which is ugly
+  tags$head(
+    tags$style(HTML("
+                    .shiny-input-container:not(.shiny-input-container-inline) {
+                      width: 100%;
+                      max-width: 100%;
+                    }
+                    "))
+    ),
+  
+  # App title ----
+  h3("My Survey"),
+  
+  p("Please fill out the following brief survey..."),
+  
+  fluidRow(
+    column(width=6, text_demo),
+    column(width=6, password_demo)
+  ),
+  
+  fluidRow(
+    column(width=4,
+           select_demo,
+           radio_demo,
+           checkbox_demo
+    ),
+    column(width=4, 
+           cbgroup_demo
+    ),
+    column(width=4, 
+           number_demo
+    )
+  ),
+  
+  slider_demo,
+  date_demo,
+  daterange_demo,
+  textarea_demo, 
+  
+  actionButton("submit", "Submit"),
+  action_demo
+)
+
+# Reactive functions ----
+server = function(input, output, session) {
+  
+  # When the Submit button is clicked, save the form data
+  observeEvent(input$submit, {
+    saveData(input)
+    resetForm(session)
+    
+    # thank the user
+    n_responses <- length(list.files(outputDir))
+    response <- paste0("Thank you for completing the survey! You are respondant ",
+                      n_responses, ".")
+    showNotification(response, duration = 0, type = "message")
+  })
+  
+  # clear the fields
+  observeEvent(input$clear, {
+    resetForm(session)
+  })
+}
+
+shinyApp(ui, server)
+
+```
+
+
+### Data Widgets
+
+In the section for data input (`sidebarPanel` or `fluidRow`), you can add a [widget](defs.html#widget) for each question, then some action buttons for submitting the data or other actions. The [Shiny Widgets Gallery](http://shiny.rstudio.com/gallery/widget-gallery.html) is a useful reference for choosing the right input widgets for your questions.
+
+<form>
+<table>
+<tr><td>[`selectInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/selectInput.html)
+</td><td>
+```{r}
+select_demo <- selectInput(
+  "toto_lyrics", 
+  "Complete these famous lyrics:
+  \"I ***** ***** ***** down in Africa\"", 
+  c("", 
+    "bless the waves", 
+    "sense the rain", 
+    "bless the rain", 
+    "guess it rains"
+  )
+)
+```
+`r knit_print.shiny.tag(select_demo)[1]`  
+</td><tr>
+<tr><td>[`radioButtons`](https://shiny.rstudio.com/reference/shiny/1.0.1/checkboxGroupInput.html)
+</td><td>
+```{r}
+radio_demo <- radioButtons(
+  "toto_pref", 
+  "Do you like Toto?",
+  c("yes", "no"), 
+  inline = TRUE
+)
+```
+`r knit_print.shiny.tag(radio_demo)[1]`  
+
+</td><tr> <tr><td> [`checkboxInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/checkboxInput.html)
+</td><td>
+```{r}
+checkbox_demo <- checkboxInput(
+  "consent", 
+  "I consent to more 80s music references"
+)
+```
+`r knit_print.shiny.tag(checkbox_demo)[1]`  
+
+</td><tr> <tr><td> [`checkboxGroupInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/checkboxGroupInput.html)
+</td><td>
+```{r}
+cbgroup_demo <- checkboxGroupInput(
+  "fam_bands", 
+  "Which artists had a UK number one single in the 80s?",
+  c("Pat Benatar" = "pb",
+    "Toto" = "toto",
+    "Blondie" = "blon",           # atomic 1980-03-01
+    "Kraftwerk" = "kw",           # computer love 1982-02-06
+    "Dog Faced Hermans" = "dfh",
+    "Eurythmics" = "eur",         # there must be an angel 1985-07-27
+    "T'Pau" = "tpau"              # china in your hand 1987-11-14
+  )
+)
+```
+`r knit_print.shiny.tag(cbgroup_demo)[1]`  
+
+</td><tr> <tr><td> [`numericInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/numericInput.html)
+</td><td>
+```{r}
+number_demo <- numericInput(
+  "madonna_songs", 
+  "How many UK number one songs did Madonna have in the 80s?", 
+  min = 0, max = 20, step = 1, value = 0 # answer = 6
+)
+```
+`r knit_print.shiny.tag(number_demo)[1]`  
+
+</td><tr> <tr><td> [`sliderInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/sliderInput.html)
+</td><td>
+```{r}
+slider_demo <- sliderInput(
+  "rate80", 
+  "How would you rate the 80s musically, on a scale from 0-100?",
+  min = 0, max = 100, step = 1, value = 50
+)
+```
+`r knit_print.shiny.tag(slider_demo)[1]`
+
+<small>(this will only display correctly in a Shiny app, not on a static webpage)</small>
+
+</td><tr> <tr><td> [`dateInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/dateInput.html)
+</td><td>
+```{r}
+date_demo <- dateInput(
+  "africa_date", 
+  "Africa by Toto reached its peak position of #3 in the UK charts on what date?",
+  min = "1980-01-01", max = "1989-12-31", startview="year"
+  # right answer is 1983-02-26
+)
+```
+`r knit_print.shiny.tag(date_demo)[1]`
+
+<small>(this will only display correctly in a Shiny app, not on a static webpage)</small>
+
+</td><tr> <tr><td> [`dateRangeInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/dateRangeInput.html)</td><td>
+```{r}
+daterange_demo <- dateRangeInput(
+  "africa_date", 
+  "What was the full UK Top 100 chart run of Africa by Toto?",
+  min = "1980-01-01", max = "1989-12-31", startview="year"
+  # right answer is 1983-01-29 to 1983-04-09
+)
+```
+`r knit_print.shiny.tag(daterange_demo)[1]`
+
+<small>(this will only display correctly in a Shiny app, not on a static webpage)</small>
+
+</td><tr> <tr><td> [`textInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/textInput.html)  
+</td><td>
+```{r}
+text_demo <- textInput(
+  "fav_band", 
+  "What is your favourite 80s band?"
+)
+```
+`r knit_print.shiny.tag(text_demo)[1]`
+
+</td><tr> <tr><td> [`textAtreaInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/textAreaInput.html)
+</td><td>
+```{r}
+textarea_demo <- textAreaInput(
+  "think", 
+  "What do you think about this exercise?"
+)
+```
+`r knit_print.shiny.tag(textarea_demo)[1]`
+
+</td><tr> <tr><td> [`passwordInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/passwordInput.html)
+</td><td>
+```{r}
+password_demo <- passwordInput(
+  "password", 
+  "Tell me a secret."
+)
+```
+`r knit_print.shiny.tag(password_demo)[1]`
+
+</td><tr> <tr><td> [`submitButton`](https://shiny.rstudio.com/reference/shiny/1.0.1/submitButton.html)
+</td><td>
+```{r}
+submit_demo <- submitButton("Submit")
+```
+`r knit_print.shiny.tag(submit_demo)[1]`
+
+</td><tr> <tr><td> [`actionButton`](https://shiny.rstudio.com/reference/shiny/1.0.1/actionButton.html)
+</td><td>
+```{r}
+action_demo <- actionButton(
+  "clear", "Clear Form"
+)
+```
+`r knit_print.shiny.tag(action_demo)[1]`
+
+</td><tr> <tr><td> [`downloadButton`](https://shiny.rstudio.com/reference/shiny/1.0.1/downloadButton.html)
+</td><td>
+```{r}
+download_demo <- downloadButton(
+  "download", "Download"
+)
+```
+`r knit_print.shiny.tag(download_demo)[1]`
+
+</td><tr> <tr><td> [`fileInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/fileInput.html)
+</td><td>
+```{r}
+file_demo <- fileInput(
+  "upload", "Upload a PDF", accept = "pdf"
+)
+```
+`r knit_print.shiny.tag(file_demo)[1]`
+
+</td><tr> <tr><td> [`helpText`](https://shiny.rstudio.com/reference/shiny/1.0.1/helpText.html)
+</td><td>
+```{r}
+help_demo <- helpText("You can write help text in your form this way")
+```
+`r knit_print.shiny.tag(help_demo)[1]`
+</td></tr>
+</table>
+</form>
+
+### Data Saving
+
+```{r, eval = F}
+
+saveData <- function(input) {
+  # put variables in a data frame
+  data <- data.frame(matrix(nrow=1,ncol=0))
+  for (x in fields) {
+    var <- input[[x]]
+    if (length(var) > 1 ) {
+      # handles lists from checkboxGroup and multiple Select
+      data[[x]] <- list(var)
+    } else {
+      # all other data types
+      data[[x]] <- var
+    }
+  }
+  data$submit_time <- date()
+  
+  # Create a unique file name
+  fileName <- sprintf(
+    "%s_%s.rds", 
+    as.integer(Sys.time()), 
+    digest::digest(data)
+  )
+  
+  # Write the file to the local system
+  saveRDS(
+    object = data,
+    file = file.path(outputDir, fileName)
+  )
+}
+```
+
+
+### Submit Action
+
+Use the `observeEvent` function to define what happens when you click the submit button. It goes inside the server function. The following code handles multiple selections and checkbox groups (which are very tricky to store in a table) and adds a submit_time column.
+
+
+```{r, eval = F}
+
+  # When the Submit button is clicked, save the form data
+  observeEvent(input$submit, {
+    saveData(input)
+    resetForm(session)
+  })
+
+```
+
+You're done with a basic questionnaire at this point if you don't want to give feedback to the participant. If you aren't showing feedback, you can reassure the user that their response was submitted with code like `showNotification(response, duration = 0, type = "message")`.
+
+### Feedback
+
+First, you need to create a function for loading and [conatenating](defs.html#concatenate) all of the previously saved data files.
+
+```{r, eval = F}
+loadData <- function() {
+  # read all the files into a list
+  files <- list.files(outputDir, full.names = TRUE)
+  
+  if (length(files) == 0) {
+    # create empty data frame with correct columns
+    field_list <- c(fields, "submit_time")
+    data <- data.frame(matrix(ncol = length(field_list), nrow = 0))
+    names(data) <- field_list
+  } else {
+    data <- lapply(files, function(x) readRDS(x)) 
+    
+    # Concatenate all data together into one data.frame
+    data <- do.call(rbind, data)
+  }
+  
+  data
+}
+```
+
+
+Then, you can write a function that displays feedback calculated from the loaded data. This feedback shows an interactive table of all the collected data, whenever the submit or detele buttons are pressed.
+
+```{r, eval = F}
+    # Show the previous responses in a reactive table ----
+    output$responses <- renderDataTable({
+      # update with current response when Submit or Delete are clicked
+      input$submit 
+      input$delete
+      
+      loadData()
+    })
+```
+
+
+
+### Upload to your R server
+
+If you don't have access to an R server, you can sign up for a free account at [shinyapps.io](http://www.shinyapps.io/). Get your [token and secret](https://www.shinyapps.io/admin/#/tokens) and add them to the code below.
+
+```{r, eval = F}
+rsconnect::setAccountInfo(
+  name='my-username', 
+  token='my-token', 
+  secret='my-secret'
+)
+
+rsconnect::deployApp("inputdemo")
+```
+
+
+## Activity
+
+1. Create your own survey
+2. Create a feedback method
+3. Upload to a Shiny server

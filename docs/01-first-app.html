@@ -325,7 +325,7 @@ div.tocify {
 <li>Knowledge: <a href="https://gupsych.github.io/data_skills/01_intro.html">Basic RStudio and R</a></li>
 <li>Programs: <a href="http://cran.r-project.org/mirrors.html">R</a> and <a href="https://www.rstudio.com/products/rstudio/download3/">RStudio</a></li>
 <li>Packages: <code>shiny</code>, <code>ggplot2</code></li>
-<li>Time: ~ 20 minutes</li>
+<li>Time: ~ 30 minutes</li>
 </ul>
 <div id="create-the-demo-app" class="section level1">
 <h1><span class="header-section-number">1</span> Create the Demo App</h1>
@@ -453,7 +453,7 @@ You can close the app by closing the window or browser tab it’s running in, or
 </div>
 <div id="change-the-input" class="section level2">
 <h2><span class="header-section-number">2.3</span> Change the input</h2>
-<p>Find the function <code>sliderInput</code> (line 21). The first <a href="defs.html#argument">argument</a> is the name you can use in the code to find the value of this input, so don’t change it just yet. The second argument is the text that displays before the slider. Change this to something else and re-run the app.</p>
+<p>Find the function <code>sliderInput</code> (line 21). The first <a href="defs.html#argument">argument</a> is the name you can use in the code to find the value of this input, so don’t change it just yet. The second <a href="defs.html#argument">argument</a> is the text that displays before the slider. Change this to something else and re-run the app.</p>
 <pre class="r"><code>         sliderInput(&quot;bins&quot;,
                      &quot;Number of bins:&quot;,
                      min = 0,
@@ -515,7 +515,7 @@ See where you can move the text in the layout of the page and where causes error
 </div>
 <div id="change-the-plot-style" class="section level2">
 <h2><span class="header-section-number">2.7</span> Change the plot style</h2>
-<p>I prefer <code>ggplot</code> graphs, so let’s make the plot with <code>geom_histogram</code> instead of <code>hist</code> (which is a great function for really quick plots). Since we need several functions from the <code>ggplot</code> <a href="defs.html#package">package</a>, we’ll need to load that package at the top of the script, just under where the <code>shiny</code> package is loaded:</p>
+<p>I prefer <code>ggplot</code> graphs, so let’s make the plot with <code>geom_histogram</code> instead of <code>hist</code> (which is a great function for really quick plots). Since we need several functions from the <code>ggplot2</code> <a href="defs.html#package">package</a>, we’ll need to load that package at the top of the script, just under where the <code>shiny</code> package is loaded:</p>
 <pre class="r"><code>library(shiny)
 library(ggplot2)</code></pre>
 <p>You can replace all of the code in the <code>renderPlot</code> function with the code below.</p>

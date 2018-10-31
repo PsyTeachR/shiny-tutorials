@@ -305,7 +305,7 @@ div.tocify {
 
 <div id="argument" class="section level3">
 <h3>argument</h3>
-<p>A variable that provides input to a [function(defs.html#function).</p>
+<p>A variable that provides input to a <a href="defs.html#function">function</a>.</p>
 </div>
 <div id="chunk" class="section level3">
 <h3>chunk</h3>
@@ -314,12 +314,58 @@ div.tocify {
 
 mean_age <- mean(ages) %>% round(2)
 
-```</code></pre>
+&#96;&#96;&#96;</code></pre>
 </div>
 <div id="comment" class="section level3">
 <h3>comment</h3>
 <p>You can annotate <code>.R</code> files or <a href="defs.html#chunk">chunks</a> in <code>.Rmd</code> files with comments by prefacing each line of the coment with one or more hash symbols (<code>#</code>).</p>
+<pre class="r"><code># I&#39;m demonstrating comments in this chunk
+# This comment will be added to the document outline ----</code></pre>
 <p>Comments get added to the document outline if you put four or more dashes, equal signs, or hashes at the end. This is a great way to keep track of more complicated scripts.</p>
+</div>
+<div id="concatenate" class="section level3">
+<h3>concatenate</h3>
+<p>When referring to strings, concatenate means to paste them together using the function <code>paste</code> (adds a space between strings) or <code>paste0</code> (doesn’t add anything between strings).</p>
+<pre class="r"><code>subject_name &lt;- &quot;Lisa&quot;
+paste(&quot;Hello,&quot;, subject_name)</code></pre>
+<pre><code>## [1] &quot;Hello, Lisa&quot;</code></pre>
+<p>When referring to other types of variables, concatenate can mean to create a vector with those variables, usually using the <code>c</code> function. For example, you could concatenate the numbers 1, 3, 6, and 10 like this: <code>c(1, 3, 6, 10)</code>. You can concatenate two <a href="defs.html#vector">vector</a>s as well:</p>
+<pre class="r"><code>v1 &lt;- 1:5
+v2 &lt;- 11:15
+c(v1, v2)</code></pre>
+<pre><code>##  [1]  1  2  3  4  5 11 12 13 14 15</code></pre>
+<p class="alert alert-warning">
+Remember, a <a href="defs.html#vector">vector</a> can only have one <a href="defs.html#data_type">data type</a>. So if you concatenate a <a href="defs.html#string">string</a> vector and a <a href="defs.html#numeric">numeric</a> vector, the numbers will get turned into their string versions. If you concatenate an <a href="defs.html#integer">integer</a> and a <a href="defs.html#integer">double</a> vector, the integers will be converted to doubles.
+</p>
+<pre class="r"><code>strings &lt;- c(&quot;a&quot;, &quot;c&quot;, &quot;e&quot;)
+integers &lt;- c(1L, 3L, 5L)
+doubles &lt;- c(1.1, 3.3, 5.5)
+c(strings, integers)</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;c&quot; &quot;e&quot; &quot;1&quot; &quot;3&quot; &quot;5&quot;</code></pre>
+<pre class="r"><code>c(doubles, integers)</code></pre>
+<pre><code>## [1] 1.1 3.3 5.5 1.0 3.0 5.0</code></pre>
+</div>
+<div id="data-type" class="section level3">
+<h3>data type</h3>
+<ul>
+<li><a href="defs.html#integer">integer</a> (whole numbers like 1L, -10L, 3000L)</li>
+<li>double (numbers like -0.223, 10.324, 1e4)</li>
+<li><a href="defs.html#string">string</a></li>
+<li>logical (<code>TRUE</code> or <code>FALSE</code>)</li>
+</ul>
+<p>If you want to know what data type a variable is, use the function <code>typeof</code>.</p>
+<pre class="r"><code>typeof(10)</code></pre>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<pre class="r"><code>typeof(&quot;10&quot;)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<pre class="r"><code>typeof(10L)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<pre class="r"><code>typeof(10 == 10)</code></pre>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+<div id="double" class="section level3">
+<h3>double</h3>
+<p>Doubles are a <a href="defs.html#data_type">data type</a> representing any type of number. Examples of doubles are <code>1</code>, <code>1.0</code>, <code>-0.01</code>, or <code>1e4</code>.</p>
 </div>
 <div id="function" class="section level3">
 <h3>function</h3>
@@ -328,6 +374,14 @@ mean_age <- mean(ages) %>% round(2)
 <img src="images/defs/function-sd-help.png" />
 
 </div>
+</div>
+<div id="integer" class="section level3">
+<h3>integer</h3>
+<p>Integers are a <a href="defs.html#data_type">data type</a> representing whole numbers. In R, you specify that a number is an integer by adding an L at the end, like <code>1L</code>, <code>-36L</code>, or <code>100L</code>.</p>
+</div>
+<div id="numeric" class="section level3">
+<h3>numeric</h3>
+<p>The integer and double <a href="defs.html#data_type">data types</a> are numeric.</p>
 </div>
 <div id="package" class="section level3">
 <h3>package</h3>
