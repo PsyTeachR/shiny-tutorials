@@ -370,10 +370,7 @@ c(strings, integers)</code></pre>
 <div id="function" class="section level3">
 <h3>function</h3>
 <p>A named section of code that can be reused. For example, <code>sd</code> is a function that returns the standard deviation of the <a href="defs.html#vector">vector</a> of numbers that you provide as the input <a href="defs.html#argument">argument</a>. Functions are set up like this: <code>function_name(argument1 = a1, argument2 = a2)</code>. The <a href="defs.html#argument">argument</a>s in parentheses can be named (like, <code>x = c(1,3,5,8)</code>) or you can skip the names if you put them in the exact same order that they’re defined in the function. You can check this by typing <code>?sd</code> (or whatever function name you’re looking up) into the console and the Help pane will show you the default order under <strong>Usage</strong>.</p>
-<div class="figure">
-<img src="images/defs/function-sd-help.png" />
-
-</div>
+<p><img src="images/defs/function-sd-help.png" /></p>
 </div>
 <div id="integer" class="section level3">
 <h3>integer</h3>
@@ -393,10 +390,16 @@ You can alternatively type the package name and two colons before any function f
 <div id="panes" class="section level3">
 <h3>panes</h3>
 <p>RStudio is arranged with four window “panes”. By default, the upper left pane is the <em>source pane</em>, where you view and edit source code from files. The bottom left pane is usually the <em>console pane</em>, where you can type in commands and view output messages You can change the location of panes and what tabs are shown under <code>Preferences &gt; Pane Layout</code>.</p>
-<div class="figure">
-<img src="images/defs/panes.png" />
-
+<p><img src="images/defs/panes.png" /></p>
 </div>
+<div id="server" class="section level3">
+<h3>server</h3>
+<p>The server is the part of the app that works with logic. The server is a function that processes the user’s input in the UI, and allows the app to render appropriate output. See <a href="https://shiny.rstudio.com/articles/basics.html">this article</a> for more.</p>
+</div>
+<div id="shinydashboard" class="section level3">
+<h3>shinydashboard</h3>
+<p><a href="https://rstudio.github.io/shinydashboard/">Shiny Dashboard or shinydashboard</a> is a package for R that builds on Shiny for more flexible and visually appealing UIs. As with other packages, it can be installed with <code>install.packages(&quot;shinydashboard&quot;)</code>, and can be loaded with <code>library(shinydashboard)</code>.</p>
+<p>The <a href="https://rstudio.github.io/shinydashboard/get_started.html">shinydashboard Documentation</a> is a great introduction to this package.</p>
 </div>
 <div id="string" class="section level3">
 <h3>string</h3>
@@ -424,6 +427,10 @@ likert &lt;- 1:7</code></pre>
 <div id="widget" class="section level3">
 <h3>widget</h3>
 <p>A interactive web element, like a dropdown menu or a slider. See a great overview of widgets at the <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/">RStudio Shiny tutorial</a>. In shiny apps, a widget is created by its function. The first argument is the name you will use in the code for referring to that widget and its value, so make sure it’s a unique, descriptive name like <code>plot_color</code> or <code>group1_label</code>. The second argument is the label, which is a string like <code>&quot;Plot colour&quot;</code> or <code>&quot;Label for the first group&quot;</code> (it can also be an empty string like <code>&quot;&quot;</code>).</p>
+</div>
+<div id="ui" class="section level3">
+<h3>UI</h3>
+<p>The User Interface. This refers to the App as the user will see it (in HTML). The UI is defined as an object using (e.g.) <code>fluidPage()</code> or <code>dashboardPage()</code>. The UI is in contrast to the server object, which processes information the user inputs (e.g. via widgets) to the UI, and can reactively render the app’s UI. This means that the UI can look completely different depending on the actions of the user. See <a href="https://shiny.rstudio.com/articles/basics.html">this article</a> for more.</p>
 </div>
 
 
