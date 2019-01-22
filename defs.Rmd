@@ -111,6 +111,16 @@ RStudio is arranged with four window "panes". By default, the upper left pane is
 
 ![](images/defs/panes.png)
 
+### server
+
+The server is the part of the app that works with logic. The server is a function that processes the user's input in the UI, and allows the app to render appropriate output. See [this article](https://shiny.rstudio.com/articles/basics.html) for more.
+
+### shinydashboard
+
+[Shiny Dashboard or shinydashboard](https://rstudio.github.io/shinydashboard/) is a package for R that builds on Shiny for more flexible and visually appealing UIs. As with other packages, it can be installed with `install.packages("shinydashboard")`, and can be loaded with `library(shinydashboard)`.
+
+The [shinydashboard Documentation](https://rstudio.github.io/shinydashboard/get_started.html) is a great introduction to this package.
+
 ### string
 
 A piece of text inside of quotes. For example, `"I sense the rains down in Africa"` is a string. Numbers inside of quotes can be a string; `"19"` is a string, while `19` is not.
@@ -142,6 +152,10 @@ letters[fun_to_play_at]
 ### widget
 
 A interactive web element, like a dropdown menu or a slider. See a great overview of widgets at the [RStudio Shiny tutorial](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/). In shiny apps, a widget is created by its function. The first argument is the name you will use in the code for referring to that widget and its value, so make sure it's a unique, descriptive name like `plot_color` or `group1_label`. The second argument is the label, which is a string like `"Plot colour"` or `"Label for the first group"` (it can also be an empty string like `""`).
+
+### UI
+
+The User Interface. This refers to the App as the user will see it (in HTML). The UI is defined as an object using (e.g.) `fluidPage()` or `dashboardPage()`. The UI is in contrast to the server object, which processes information the user inputs (e.g. via widgets) to the UI, and can reactively render the app's UI. This means that the UI can look completely different depending on the actions of the user. See [this article](https://shiny.rstudio.com/articles/basics.html) for more.
 
 
 
