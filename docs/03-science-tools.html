@@ -74,9 +74,7 @@ h6 {
 
 <link rel="stylesheet" href="shiny.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -101,6 +99,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -115,7 +116,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -135,6 +135,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -156,13 +193,71 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
@@ -175,7 +270,6 @@ $(document).ready(function () {
   window.initializeCodeFolding("show" === "show");
 });
 </script>
-
 
 
 
@@ -270,6 +364,16 @@ div.tocify {
 
 </style>
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
@@ -320,6 +424,14 @@ div.tocify {
 </div>
 
 
+<pre><code>## -- Attaching packages --------------------------------------- tidyverse 1.2.1 --</code></pre>
+<pre><code>## v ggplot2 3.1.0       v purrr   0.3.2  
+## v tibble  2.1.1       v dplyr   0.8.0.1
+## v tidyr   0.8.3       v stringr 1.4.0  
+## v readr   1.3.1       v forcats 0.4.0</code></pre>
+<pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
 <p>This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building an app which will help us calculate the <a href="https://en.wikipedia.org/wiki/Visual_angle">visual angle</a> of a stimulus. I’d recommend you complete the earlier Shiny tutorials (<a href="01-first-app.html">Creating your first app</a> and <a href="data-input.html">Data collection</a>) as we’ll be building on that knowledge here.</p>
 <p>This tutorial will also introduce <a href="https://shiny.rstudio.com/articles/understanding-reactivity.html">reactivity</a>, which refers to how the app will react to the user’s input, and <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a>, a <a href="defs.html#package">package</a> which lets us build much more visually pleasing and user-friendly Shiny apps.</p>
 <div id="try-the-demo-app" class="section level1">
@@ -328,6 +440,7 @@ div.tocify {
 </div>
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">2</span> Setup</h1>
+<p>First of all, we’ll need to install the necessary packages (especially <code>shinydashboard</code>), create our shiny project, and check everything runs okay…</p>
 <div id="install-shinydashboard" class="section level2">
 <h2><span class="header-section-number">2.1</span> Install <code>shinydashboard</code></h2>
 <p>This tutorial uses <code>shinydashboard</code>. If you’ve not already done so, install the latest version of <code>shinydashboard</code> with:</p>
@@ -461,36 +574,91 @@ shinyApp(ui = ui, server = server)</code></pre>
 <p>A distinctive feature of <code>shinydashboard</code> is <a href="https://rstudio.github.io/shinydashboard/structure.html#boxes"><code>boxes</code></a>. These are a really easy way of organising your content in Shiny Apps. We can create a box using the <code>box()</code> argument, and putting it inside the <code>fluidRow()</code> function for the stimulus features tab.</p>
 <p>Replace the section of your code that reads, <code># the tab's content will go in here</code>, with the following:</p>
 <pre class="r"><code>box(
-  width = 6,
+  width = 6,  # an integer between 1 and 12, where 1 is 1/12 of the possible width
   title = &quot;Stimulus Size&quot;,
-  column(12, numericInput(&quot;size&quot;, &quot;Size&quot;, value=3.2, min=0.01, step=0.01, width=&quot;100%&quot;)),
-  height = 250
+  numericInput(&quot;size&quot;, &quot;Size&quot;, value=3.2, min=0.01, step=0.01, width=&quot;100%&quot;)
 )</code></pre>
 <p>Your App’s Stimulus Features tab should now look something like this:</p>
-<p>[images/02-first-box.png]</p>
+<p><img src="images/03-science-tools/02-first-box.png" /></p>
 </div>
 <div id="box-content" class="section level2">
 <h2><span class="header-section-number">4.3</span> Box Content</h2>
-<p>(add selectInput for units selection)</p>
+<p>Have another look at the <a href="http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/">example app</a>. Let’s include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give “cm”, “mm”, and “inches” as options. Set the <code>inputId</code> argument to something like <code>&quot;size_units&quot;</code>. For a refresher, see <a href="data-input.html#Data-Widgets"><code>selectInput()</code></a> from the last tutorial.</p>
+<details>
+<p><summary>Show Solution…</summary></p>
+<pre class="r"><code>selectInput(&quot;size_units&quot;, &quot;Units&quot;, c(&quot;cm&quot;, &quot;mm&quot;, &quot;inches&quot;))</code></pre>
+</details>
+<p>  </p>
 </div>
 <div id="adding-new-boxes" class="section level2">
 <h2><span class="header-section-number">4.4</span> Adding New Boxes</h2>
-<p>(build the Stimulus Distance box using what you’ve learned so far)</p>
-</div>
-<div id="adding-new-tabs-content" class="section level2">
-<h2><span class="header-section-number">4.5</span> Adding New Tabs’ Content</h2>
-<p>(build the Results Tab content, but use <code>infoBox()</code>)</p>
+<p>Let’s add the next box on the Stimulus Features tab, which will be used to input the distance of the stimulus from the participant. After the bracket which closes the <code>box()</code> function for our stimulus size box, add a comma (and new line for neatness), and create another <code>box()</code>.</p>
+<p>Most of the arguments can then be copied over, but make sure to change the <code>title</code>, and the <code>inputId</code> and <code>label</code> arguments for the user input.</p>
+<details>
+<p><summary>Show Solution…</summary></p>
+<pre class="r"><code>box(
+  width = 6,  # an integer between 1 and 12, where 1 is 1/12 of the possible width
+  title = &quot;Stimulus Distance&quot;,
+  numericInput(&quot;distance&quot;, &quot;Distance&quot;, value=3.2, min=0.01, step=0.01, width=&quot;100%&quot;),
+  selectInput(&quot;distance_units&quot;, &quot;Units&quot;, c(&quot;cm&quot;, &quot;mm&quot;, &quot;inches&quot;))
+)</code></pre>
+</details>
+<p>  </p>
 </div>
 </div>
 <div id="server-logic" class="section level1">
 <h1><span class="header-section-number">5</span> Server Logic</h1>
-<div id="calculate-visual-angle" class="section level2">
-<h2><span class="header-section-number">5.1</span> Calculate Visual Angle</h2>
-<p>(using functions given at top of script)</p>
+<p>Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app’s results tab. Anything calculated after the app first initialises needs to be calculated in the server. These values are <em>reactive</em> in the sense that they <em>react</em> to the user’s input. Reactivity is the most confusing thing about shiny, but also the coolest.</p>
+<div id="give-the-features-consistent-units" class="section level2">
+<h2><span class="header-section-number">5.1</span> Give the Features Consistent Units</h2>
+<p>Since the user could have theoretically given their stimulus’ size in mm, but its distance in inches, the first step is to put these in consistent units. Thankfully, we have a handy <code>to_mm()</code> function, which takes two arguments: a numeric value, and its current units (“mm”, “cm”, “inches”). The function returns a single numeric value, which is the same value but in mm.</p>
+<p>As an example:</p>
+<pre class="r"><code>to_mm(29, &quot;inches&quot;)</code></pre>
+<pre><code>## [1] 736.6</code></pre>
+<p>How Reactive Values work:</p>
+<ul>
+<li><p>Reactive values are essentially functions, which provide the current reactive value as output when evaluated (e.g. <code>myValue()</code>).</p></li>
+<li><p>The user’s input is handily stored in a list object called <code>input</code>. Specific values can be extracted with <code>input$inputID</code>.</p></li>
+<li><p>Reactive values are assigned in the form <code>myValue &lt;- reactive({ 2 * input$userNumber })</code>.</p></li>
+</ul>
+<p>To get our stimulus size and distance values, we can add something like this to our server, referencing the user’s values with the inputIDs we added in our UI:</p>
+<pre class="r"><code>stim_size &lt;- reactive({
+  to_mm(input$size, input$size_units)
+})
+
+stim_distance &lt;- reactive({
+  to_mm(input$distance, input$distance_units)
+})</code></pre>
 </div>
-<div id="display-results-reactively" class="section level2">
-<h2><span class="header-section-number">5.2</span> Display Results reactively</h2>
-<p>(replace the info box in the UI with <code>infoBoxOutput()</code>, and render the UI in the server function)</p>
+<div id="calculate-visual-angle" class="section level2">
+<h2><span class="header-section-number">5.2</span> Calculate Visual Angle</h2>
+<p>We can now use these reactive values to calculate another reactive value, the visual angle of the stimulus:</p>
+<pre class="r"><code>visual_angle &lt;- reactive({
+  get_va(stim_size(), stim_distance())
+})</code></pre>
+</div>
+<div id="render-results-reactively" class="section level2">
+<h2><span class="header-section-number">5.3</span> Render Results Reactively</h2>
+<p>Now we have the visual angle calculated, we just need to show it to the user. To do this, there are a number of “render” functions, which allow us to render UI features reactively. For example, <code>renderPlot()</code> lets us show the user a reactively-rendered graph. These render functions work similarly to the <code>reactive()</code> function.</p>
+<p>As we just want to show the user the output, we’re going to render an <a href="https://rstudio.github.io/shinydashboard/structure.html#infobox">infoBox</a> (similar to a valueBox), with the <code>renderInfoBox()</code> function.</p>
+<pre class="r"><code>output$results_box &lt;- renderInfoBox({
+  infoBox(
+    &quot;Visual Angle&quot;, paste0(visual_angle(), &quot; degrees&quot;),
+    icon=icon(&quot;eye&quot;), color=&quot;purple&quot;
+  )
+})</code></pre>
+</div>
+<div id="adding-new-tabs-content" class="section level2">
+<h2><span class="header-section-number">5.4</span> Adding New Tabs’ Content</h2>
+<p>If you run the app now, you’ll notice that we get a whole lot of nothing on the results tab. This is because we’ve rendered the info box with our results, but we still need to say where we want to put it. Put a comma after the last tabItem, and add the following code.</p>
+<pre class="r"><code>tabItem(
+  tabName = &quot;results&quot;,
+  fluidRow(
+    infoBoxOutput(&quot;results_box&quot;),
+    tags$style(&quot;#results_box {width:100%;}&quot;)
+  )
+)</code></pre>
+<p><em>Note: The <code>tags$style()</code> function is an example of inline css in our code. In this example we’re styling our info box to have a width of 100%</em></p>
 </div>
 </div>
 <div id="bonus-material" class="section level1">
