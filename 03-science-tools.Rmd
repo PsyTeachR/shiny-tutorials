@@ -11,6 +11,28 @@ output:
     number_sections: true
 ---
 
+```{r, echo=F, results="hide"}
+library(tidyverse)
+# function for calculating visual angle
+get_va <- function(size, distance, approx=F){
+  if (approx) {
+    rad <- atan(size/distance)
+  } else {
+    rad <- 2*atan(size/(2*distance))
+  }
+  rad*(180/pi)  # radians to angle
+}
+# function for converting to consistent units (mm)
+to_mm <- function(val, units){
+  recode(
+    units,
+    "mm"=as.double(val),
+    "cm"=as.double(val)*10,
+    "inches"=as.double(val)*25.4
+  )
+}
+```
+
 This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building an app which will help us calculate the [visual angle](https://en.wikipedia.org/wiki/Visual_angle) of a stimulus. I'd recommend you complete the earlier Shiny tutorials ([Creating your first app](01-first-app.html) and [Data collection](data-input.html)) as we'll be building on that knowledge here.
 
 This tutorial will also introduce [reactivity](https://shiny.rstudio.com/articles/understanding-reactivity.html), which refers to how the app will react to the user's input, and [shinydashboard](https://rstudio.github.io/shinydashboard/), a [package](defs.html#package) which lets us build much more visually pleasing and user-friendly Shiny apps.
@@ -20,6 +42,8 @@ This tutorial will also introduce [reactivity](https://shiny.rstudio.com/article
 Try the simple [Visual Angle app](http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/). You'll have something very similar built by the end of this tutorial.
 
 # Setup
+
+First of all, we'll need to install the necessary packages (especially `shinydashboard`), create our shiny project, and check everything runs okay...
 
 ## Install `shinydashboard`
 
@@ -177,39 +201,122 @@ Replace the section of your code that reads, `# the tab's content will go in her
 
 ```{r, eval=F}
 box(
-  width = 6,
+  width = 6,  # an integer between 1 and 12, where 1 is 1/12 of the possible width
   title = "Stimulus Size",
-  column(12, numericInput("size", "Size", value=3.2, min=0.01, step=0.01, width="100%")),
-  height = 250
+  numericInput("size", "Size", value=3.2, min=0.01, step=0.01, width="100%")
 )
 ```
 
 Your App's Stimulus Features tab should now look something like this:
 
-![images/02-first-box.png]
+![](images/03-science-tools/02-first-box.png)
 
 ## Box Content
 
-(add selectInput for units selection)
+Have another look at the [example app](http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/). Let's include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give "cm", "mm", and "inches" as options. Set the `inputId` argument to something like `"size_units"`. For a refresher, see [`selectInput()`](data-input.html#Data-Widgets) from the last tutorial.
+
+<details>
+<summary>Show Solution...</summary>
+```{r, eval=F}
+selectInput("size_units", "Units", c("cm", "mm", "inches"))
+```
+</details>
+&nbsp;&nbsp;
 
 ## Adding New Boxes
 
-(build the Stimulus Distance box using what you've learned so far)
+Let's add the next box on the Stimulus Features tab, which will be used to input the distance of the stimulus from the participant. After the bracket which closes the `box()` function for our stimulus size box, add a comma (and new line for neatness), and create another `box()`.
 
-## Adding New Tabs' Content
+Most of the arguments can then be copied over, but make sure to change the `title`, and the `inputId` and `label` arguments for the user input.
 
-(build the Results Tab content, but use `infoBox()`)
+<details>
+<summary>Show Solution...</summary>
+```{r, eval=F}
+box(
+  width = 6,  # an integer between 1 and 12, where 1 is 1/12 of the possible width
+  title = "Stimulus Distance",
+  numericInput("distance", "Distance", value=3.2, min=0.01, step=0.01, width="100%"),
+  selectInput("distance_units", "Units", c("cm", "mm", "inches"))
+)
+```
+</details>
+&nbsp;&nbsp;
 
 # Server Logic
 
+Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app's results tab. Anything calculated after the app first initialises needs to be calculated in the server. These values are *reactive* in the sense that they *react* to the user's input. Reactivity is the most confusing thing about shiny, but also the coolest.
+
+## Give the Features Consistent Units
+
+Since the user could have theoretically given their stimulus' size in mm, but its distance in inches, the first step is to put these in consistent units. Thankfully, we have a handy `to_mm()` function, which takes two arguments: a numeric value, and its current units ("mm", "cm", "inches"). The function returns a single numeric value, which is the same value but in mm.
+
+As an example:
+```{r}
+to_mm(29, "inches")
+```
+
+How Reactive Values work:
+
+* Reactive values are essentially functions, which provide the current reactive value as output when evaluated (e.g. `myValue()`).
+
+* The user's input is handily stored in a list object called `input`. Specific values can be extracted with `input$inputID`.
+
+* Reactive values are assigned in the form `myValue <- reactive({ 2 * input$userNumber })`.
+
+To get our stimulus size and distance values, we can add something like this to our server, referencing the user's values with the inputIDs we added in our UI:
+
+```{r, eval=F}
+stim_size <- reactive({
+  to_mm(input$size, input$size_units)
+})
+
+stim_distance <- reactive({
+  to_mm(input$distance, input$distance_units)
+})
+```
+
 ## Calculate Visual Angle
 
-(using functions given at top of script)
+We can now use these reactive values to calculate another reactive value, the visual angle of the stimulus:
 
-## Display Results reactively
+```{r, eval=F}
+visual_angle <- reactive({
+  get_va(stim_size(), stim_distance())
+})
+```
 
-(replace the info box in the UI with `infoBoxOutput()`, and render the UI in the server function)
+## Render Results Reactively
+
+Now we have the visual angle calculated, we just need to show it to the user. To do this, there are a number of "render" functions, which allow us to render UI features reactively. For example, `renderPlot()` lets us show the user a reactively-rendered graph. These render functions work similarly to the `reactive()` function.
+
+As we just want to show the user the output, we're going to render an [infoBox](https://rstudio.github.io/shinydashboard/structure.html#infobox) (similar to a valueBox), with the `renderInfoBox()` function.
+
+```{r, eval=F}
+output$results_box <- renderInfoBox({
+  infoBox(
+    "Visual Angle", paste0(visual_angle(), " degrees"),
+    icon=icon("eye"), color="purple"
+  )
+})
+```
+
+## Adding New Tabs' Content
+
+If you run the app now, you'll notice that we get a whole lot of nothing on the results tab. This is because we've rendered the info box with our results, but we still need to say where we want to put it. Put a comma after the last tabItem, and add the following code.
+
+```{r, eval=F}
+tabItem(
+  tabName = "results",
+  fluidRow(
+    infoBoxOutput("results_box"),
+    tags$style("#results_box {width:100%;}")
+  )
+)
+```
+
+*Note: The `tags$style()` function is an example of inline css in our code. In this example we're styling our info box to have a width of 100%*
 
 # Bonus Material
 
 ## Iterative UI Generation
+
