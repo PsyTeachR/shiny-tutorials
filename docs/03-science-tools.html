@@ -617,7 +617,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="server-logic" class="section level1">
 <h1><span class="header-section-number">5</span> Server Logic</h1>
-<p>Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app’s results tab. Anything calculated after the app first initialises needs to be calculated in the server. These values are <em>reactive</em> in the sense that they <em>react</em> to the user’s input. Reactivity is the most confusing thing about shiny, but also the coolest.</p>
+<p>Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app’s results tab. Anything calculated after the app first initialises needs to be calculated in the <a href="defs.html#server">server</a>. These values are <a href="defs.html#reactivity"><em>reactive</em></a> in the sense that they <em>react</em> to the user’s input. Reactivity is the most confusing thing about shiny, but also the coolest.</p>
 <div id="give-the-features-consistent-units" class="section level2">
 <h2><span class="header-section-number">5.1</span> Give the Features Consistent Units</h2>
 <p>Since the user could have theoretically given their stimulus’ size in mm, but its distance in inches, the first step is to put these in consistent units. Thankfully, we have a handy <code>to_mm()</code> function, which takes two arguments: a numeric value, and its current units (“mm”, “cm”, “inches”). The function returns a single numeric value, which is the same value but in mm.</p>

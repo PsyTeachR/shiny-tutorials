@@ -281,7 +281,7 @@ box(
 
 # Server Logic
 
-Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app's results tab. Anything calculated after the app first initialises needs to be calculated in the server. These values are *reactive* in the sense that they *react* to the user's input. Reactivity is the most confusing thing about shiny, but also the coolest.
+Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app's results tab. Anything calculated after the app first initialises needs to be calculated in the [server](defs.html#server). These values are [*reactive*](defs.html#reactivity) in the sense that they *react* to the user's input. Reactivity is the most confusing thing about shiny, but also the coolest.
 
 ## Give the Features Consistent Units
 
