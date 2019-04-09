@@ -111,6 +111,10 @@ RStudio is arranged with four window "panes". By default, the upper left pane is
 
 ![](images/defs/panes.png)
 
+### reactivity
+
+Reactivity refers to changes in your app that occur in response to user input. Reactive features of your [UI](#ui) are rendered in the [server](#server).
+
 ### server
 
 The server is the part of the app that works with logic. The server is a function that processes the user's input in the UI, and allows the app to render appropriate output. See [this article](https://shiny.rstudio.com/articles/basics.html) for more.
