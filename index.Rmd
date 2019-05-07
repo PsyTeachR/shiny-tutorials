@@ -8,6 +8,7 @@ I'm going to create a series of tutorials for creating shiny apps for psychology
 
 * [Creating your first app](01-first-app.html)
 * [Data collection](data-input.html)
+* [Tools for Science](03-science-tools.html)
 
 ### Resources
 

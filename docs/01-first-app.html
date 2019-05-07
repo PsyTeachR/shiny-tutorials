@@ -74,9 +74,7 @@ h6 {
 
 <link rel="stylesheet" href="shiny.css" type="text/css" />
 
-</head>
 
-<body>
 
 <style type = "text/css">
 .main-container {
@@ -101,6 +99,9 @@ img {
 button.code-folding-btn:focus {
   outline: none;
 }
+summary {
+  display: list-item;
+}
 </style>
 
 
@@ -115,7 +116,6 @@ body {
   padding-top: 65px;
   margin-top: -65px;
 }
-
 .section h2 {
   padding-top: 65px;
   margin-top: -65px;
@@ -135,6 +135,43 @@ body {
 .section h6 {
   padding-top: 65px;
   margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
 }
 </style>
 
@@ -156,13 +193,71 @@ $(document).ready(function () {
 });
 </script>
 
-
-<div class="container-fluid main-container">
-
 <!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
 });
 </script>
 
@@ -175,7 +270,6 @@ $(document).ready(function () {
   window.initializeCodeFolding("show" === "show");
 });
 </script>
-
 
 
 
@@ -270,6 +364,16 @@ div.tocify {
 
 </style>
 
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
 <!-- setup 3col/9col grid for toc_float and main content  -->
 <div class="row-fluid">
 <div class="col-xs-12 col-sm-4 col-md-3">
@@ -333,37 +437,25 @@ div.tocify {
 <div id="new-project" class="section level2">
 <h2><span class="header-section-number">1.1</span> New project…</h2>
 <p>Under the <code>File</code> menu, choose <code>New Project...</code>. You will see a popup window like the one below. Choose <code>New Directory</code>.</p>
-<div class="figure">
-<img src="images/01-first-app/01-create-project.png" />
-
-</div>
+<p><img src="images/01-first-app/01-create-project.png" /></p>
 <p><input type="checkbox" class="progress"></p>
 </div>
 <div id="project-type" class="section level2">
 <h2><span class="header-section-number">1.2</span> Project type</h2>
 <p>Choose <code>Shiny Web Application</code> as the project type.</p>
-<div class="figure">
-<img src="images/01-first-app/02-project-type.png" />
-
-</div>
+<p><img src="images/01-first-app/02-project-type.png" /></p>
 <p><input type="checkbox" class="progress"></p>
 </div>
 <div id="directory-name" class="section level2">
 <h2><span class="header-section-number">1.3</span> Directory name</h2>
 <p>I like to put all of my apps in the same directory, but it doesn’t matter where you save it.</p>
-<div class="figure">
-<img src="images/01-first-app/03-project-directory.png" />
-
-</div>
+<p><img src="images/01-first-app/03-project-directory.png" /></p>
 <p><input type="checkbox" class="progress"></p>
 </div>
 <div id="default-demo-app" class="section level2">
 <h2><span class="header-section-number">1.4</span> Default demo app</h2>
 <p>Your RStudio interface should look like this now. You don’t have to do anything else at this step.</p>
-<div class="figure">
-<img src="images/01-first-app/04-rstudio-interface.png" />
-
-</div>
+<p><img src="images/01-first-app/04-rstudio-interface.png" /></p>
 <p class="alert alert-warning">
 If RStudio has changed their demo app and your source code doesn’t look like this, replace it with the code below:
 </p>
@@ -421,10 +513,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <div id="run-the-app" class="section level2">
 <h2><span class="header-section-number">1.5</span> Run the app</h2>
 <p>Click on <code>Run App</code> in the top right corner of the <a href="defs.html#panes">source pane</a>. The app will open up in a new window. Play with the slider and watch the histogram change.</p>
-<div class="figure">
-<img src="images/01-first-app/05-app-interface.png" />
-
-</div>
+<p><img src="images/01-first-app/05-app-interface.png" /></p>
 <p class="alert alert-info">
 You can also open up the app in a web browser by clicking on <code>Open in Browser</code>.
 </p>
@@ -440,10 +529,7 @@ You can close the app by closing the window or browser tab it’s running in, or
 <div id="change-the-title" class="section level2">
 <h2><span class="header-section-number">2.1</span> Change the title</h2>
 <p>Find the application title. It is the first <a href="defs.html#argument">argument</a> to the <a href="defs.html#function">function</a> <code>titlePanel</code>. Change the title to <code>&quot;My First App&quot;</code>. Make sure the title is inside quotes and the whole quoted <a href="defs.html#string">string</a> is inside the parentheses. Save the file (<code>cmd-S</code> or <code>File &gt; Save</code>).</p>
-<div class="figure">
-<img src="images/01-first-app/06-change-title.png" />
-
-</div>
+<p><img src="images/01-first-app/06-change-title.png" /></p>
 <p><input type="checkbox" class="progress"></p>
 </div>
 <div id="reload-the-app" class="section level2">
@@ -475,10 +561,7 @@ See if you can figure out what the next three arguments to <code>sliderInput</co
                      max = 40,
                      value = 25)
       )</code></pre>
-<div class="figure">
-<img src="images/01-first-app/07-app-sidebar-p.png" />
-
-</div>
+<p><img src="images/01-first-app/07-app-sidebar-p.png" /></p>
 <p class="alert alert-info">
 The sidebar shows up on the left if your window is wide enough, but moves to the top of the screen if it’s too narrow.
 </p>
@@ -553,10 +636,7 @@ Try plotting the eruption time (<code>eruptions</code>) instead of the waiting t
                                   &quot;Eruption time&quot; = &quot;eruptions&quot;),
                       selected = &quot;waiting&quot;
          ),</code></pre>
-<div class="figure">
-<img src="images/01-first-app/08-radiobutton-widget.png" />
-
-</div>
+<p><img src="images/01-first-app/08-radiobutton-widget.png" /></p>
 <p>You should have a radio button interface now. You can click on the options to switch the button, but it won’t do anything to your plot yet. We need to edit the plot-generating code to make that happen.</p>
 <p><input type="checkbox" class="progress"></p>
 </div>
@@ -570,7 +650,7 @@ Try plotting the eruption time (<code>eruptions</code>) instead of the waiting t
         xlabel &lt;- &quot;Waiting Time to Next Eruption (in minutes)&quot;
       }</code></pre>
 <p class="alert alert-warning">
-The double-equal-signs <code>==</code> means “equivalent to and is how you check if two things are the same; if you only use one equal sign, you set the variable on the left to the value on the right.
+The double-equal-signs <code>==</code> means &quot;equivalent to and is how you check if two things are the same; if you only use one equal sign, you set the variable on the left to the value on the right.
 </p>
 <p>Then we have to edit the <code>ggplot</code> function to use the new label and to plot the right column. Notice that the function <code>aes(waiting)</code> from before has changed to <code>aes_string(input$display_var)</code>. The variable <code>input$display_var</code> gives you the user-input value of the widget called <code>display_var</code>.</p>
 <pre class="r"><code>      # create plot
