@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -22,6 +23,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -84,7 +87,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -245,18 +247,6 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 
 
@@ -302,7 +292,9 @@ $(document).ready(function () {
 </div>
 
 
-<p>I’m going to create a series of tutorials for creating shiny apps for psychology research and teaching.</p>
+<p>These are a collection of tutorials introducing Shiny R.</p>
+<p> <i class="fa fa-file-powerpoint"></i> <a href="pres/00-intro.pptx">Introductory Slides (.pptx format)</a></p>
+<p> <i class="fa fa-file"></i> <a href="pres/00-intro.odp">Introductory Slides (.odp format)</a></p>
 <div id="tutorials" class="section level3">
 <h3>Tutorials</h3>
 <ul>
@@ -314,8 +306,8 @@ $(document).ready(function () {
 <div id="resources" class="section level3">
 <h3>Resources</h3>
 <ul>
-<li><a href="defs.html">Definitions</a> - I’m tryng to define common terms as I write these tutorials</li>
-<li><a href="http://shiny.rstudio.com/tutorial/">RStudio Shiny Tutorials</a> - These are way better than my tutorials</li>
+<li><a href="defs.html">Definitions</a> - Definitions of common Shiny jargon</li>
+<li><a href="http://shiny.rstudio.com/tutorial/">RStudio Shiny Tutorials</a> - These are way better tutorials</li>
 <li><a href="https://www.rstudio.com/resources/cheatsheets/#shiny">Shiny Cheat Sheet</a> - Everyone needs a wall covered in cheat sheets next to their computer</li>
 <li><a href="https://shiny.rstudio.com/reference/shiny/1.0.1/">Shiny Function Reference</a></li>
 </ul>
@@ -338,6 +330,23 @@ $(document).ready(function () {
 
 
 </script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
