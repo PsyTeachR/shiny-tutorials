@@ -2,7 +2,15 @@
 title: 'Shiny Tutorials'
 ---
 
-I'm going to create a series of tutorials for creating shiny apps for psychology research and teaching.
+```{r setup, include=FALSE}
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+These are a collection of tutorials introducing Shiny R.
+
+&emsp;<i class="fa fa-file-powerpoint"></i>&ensp;[Introductory Slides (.pptx format)](pres/00-intro.pptx)
+
+&emsp;<i class="fa fa-file"></i>&ensp;[Introductory Slides (.odp format)](pres/00-intro.odp)
 
 ### Tutorials 
 
@@ -12,7 +20,7 @@ I'm going to create a series of tutorials for creating shiny apps for psychology
 
 ### Resources
 
-* [Definitions](defs.html) - I'm tryng to define common terms as I write these tutorials
-* [RStudio Shiny Tutorials](http://shiny.rstudio.com/tutorial/) - These are way better than my tutorials
+* [Definitions](defs.html) - Definitions of common Shiny jargon
+* [RStudio Shiny Tutorials](http://shiny.rstudio.com/tutorial/) - These are way better tutorials
 * [Shiny Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/#shiny) - Everyone needs a wall covered in cheat sheets next to their computer
 * [Shiny Function Reference](https://shiny.rstudio.com/reference/shiny/1.0.1/)  

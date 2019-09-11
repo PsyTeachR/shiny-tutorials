@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -88,7 +89,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -249,56 +249,12 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -347,8 +303,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -528,7 +482,7 @@ You can close the app by closing the window or browser tab it’s running in, or
 <p><input type="checkbox" class="progress"></p>
 <div id="change-the-title" class="section level2">
 <h2><span class="header-section-number">2.1</span> Change the title</h2>
-<p>Find the application title. It is the first <a href="defs.html#argument">argument</a> to the <a href="defs.html#function">function</a> <code>titlePanel</code>. Change the title to <code>&quot;My First App&quot;</code>. Make sure the title is inside quotes and the whole quoted <a href="defs.html#string">string</a> is inside the parentheses. Save the file (<code>cmd-S</code> or <code>File &gt; Save</code>).</p>
+<p>Find the application title. It is the first <a href="defs.html#argument">argument</a> to the <a href="defs.html#function">function</a> <code>titlePanel</code>. Change the title to <code>"My First App"</code>. Make sure the title is inside quotes and the whole quoted <a href="defs.html#string">string</a> is inside the parentheses. Save the file (<code>cmd-S</code> or <code>File &gt; Save</code>).</p>
 <p><img src="images/01-first-app/06-change-title.png" /></p>
 <p><input type="checkbox" class="progress"></p>
 </div>
@@ -552,7 +506,7 @@ See if you can figure out what the next three arguments to <code>sliderInput</co
 </div>
 <div id="add-some-text" class="section level2">
 <h2><span class="header-section-number">2.4</span> Add some text</h2>
-<p>The arguments to the function <code>sidebarPanel</code> are just a list of things you want to display in the sidebar. To add some explanatory text in a paragraph before the <code>sliderInput</code>, just use the paragraph function <code>p(&quot;My text&quot;)</code></p>
+<p>The arguments to the function <code>sidebarPanel</code> are just a list of things you want to display in the sidebar. To add some explanatory text in a paragraph before the <code>sliderInput</code>, just use the paragraph function <code>p("My text")</code></p>
 <pre class="r"><code>      sidebarPanel(
          p(&quot;I am explaining this perfectly&quot;),
          sliderInput(&quot;bins&quot;,
@@ -629,7 +583,7 @@ What <em>are</em> we even plotting here? Type <code>?faithful</code> into the co
 Try plotting the eruption time (<code>eruptions</code>) instead of the waiting time. You just have to change one word in the <code>ggplot</code> function and update the x-axis label.
 </p>
 <p>We can add another input widget to let the user switch between plotting eruption time and wait time. The <a href="https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/">RStudio Shiny tutorial</a> has a great overview of the different input options. We need to toggle between two options, so we can use either radio buttons or a select box. Radio buttons are probably best if you have only a few options and the user will want to see them all at the same time to decide.</p>
-<p>Add the following code as the first argument to <code>sidebarPanel()</code>, which just takes a list of different <a href="defs.html#widget">widgets</a>. <code>radioButtons</code> is the widget we’re using. The first argument is <code>display_var</code>, which we will use later in the code to find the value of this widget. The second argument is the label to display to the user. The next argument is <code>choices</code>, which is a list of choices in the format <code>c(&quot;label1&quot; = &quot;value1&quot;, &quot;label2 = &quot;value2&quot;, ...)</code>. The label is what gets shown to the user and the value is what gets used by the code (these can be the same, but you often want the user label to be more descriptive). The last argument is <code>selected</code>, which is the value of the default choice. Save this and re-run the app.</p>
+<p>Add the following code as the first argument to <code>sidebarPanel()</code>, which just takes a list of different <a href="defs.html#widget">widgets</a>. <code>radioButtons</code> is the widget we’re using. The first argument is <code>display_var</code>, which we will use later in the code to find the value of this widget. The second argument is the label to display to the user. The next argument is <code>choices</code>, which is a list of choices in the format <code>c("label1" = "value1", "label2 = "value2", ...)</code>. The label is what gets shown to the user and the value is what gets used by the code (these can be the same, but you often want the user label to be more descriptive). The last argument is <code>selected</code>, which is the value of the default choice. Save this and re-run the app.</p>
 <pre class="r"><code>         radioButtons(&quot;display_var&quot;,
                       &quot;Which variable to display&quot;,
                       choices = c(&quot;Waiting time to next eruption&quot; = &quot;waiting&quot;,
@@ -642,7 +596,7 @@ Try plotting the eruption time (<code>eruptions</code>) instead of the waiting t
 </div>
 <div id="change-what-youre-plotting" class="section level2">
 <h2><span class="header-section-number">3.2</span> Change what you’re plotting</h2>
-<p>First, we need to change the x-axis label depending on what we’re graphing. We use an if/else statement to set the variable <code>xlabel</code> to one thing if <code>input$display_var</code> is equivalent to <code>&quot;eruptions&quot;</code>, and to something else if it’s equivalent to <code>&quot;waiting&quot;</code>. Put this code at the very beginning of the code block for the <code>renderPlot</code> function (after the line <code>output$distPlot &lt;- renderPlot({</code>).</p>
+<p>First, we need to change the x-axis label depending on what we’re graphing. We use an if/else statement to set the variable <code>xlabel</code> to one thing if <code>input$display_var</code> is equivalent to <code>"eruptions"</code>, and to something else if it’s equivalent to <code>"waiting"</code>. Put this code at the very beginning of the code block for the <code>renderPlot</code> function (after the line <code>output$distPlot &lt;- renderPlot({</code>).</p>
 <pre class="r"><code>      # set x-axis label depending on the value of display_var
       if (input$display_var == &quot;eruptions&quot;) {
         xlabel &lt;- &quot;Eruption Time (in minutes)&quot;
@@ -650,7 +604,7 @@ Try plotting the eruption time (<code>eruptions</code>) instead of the waiting t
         xlabel &lt;- &quot;Waiting Time to Next Eruption (in minutes)&quot;
       }</code></pre>
 <p class="alert alert-warning">
-The double-equal-signs <code>==</code> means &quot;equivalent to and is how you check if two things are the same; if you only use one equal sign, you set the variable on the left to the value on the right.
+The double-equal-signs <code>==</code> means "equivalent to and is how you check if two things are the same; if you only use one equal sign, you set the variable on the left to the value on the right.
 </p>
 <p>Then we have to edit the <code>ggplot</code> function to use the new label and to plot the right column. Notice that the function <code>aes(waiting)</code> from before has changed to <code>aes_string(input$display_var)</code>. The variable <code>input$display_var</code> gives you the user-input value of the widget called <code>display_var</code>.</p>
 <pre class="r"><code>      # create plot
@@ -751,6 +705,54 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

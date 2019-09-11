@@ -7,6 +7,7 @@
 <meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
@@ -88,7 +89,6 @@ code {
 }
 img {
   max-width:100%;
-  height: auto;
 }
 .tabbed-pane {
   padding-top: 12px;
@@ -249,56 +249,12 @@ $(document).ready(function () {
 }
 </style>
 
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-
-$(document).ready(function () {
-  $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
-  });
-});
-</script>
-
 <!-- code folding -->
 <style type="text/css">
 .code-folding-btn { margin-bottom: 4px; }
 </style>
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 
-
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <style type="text/css">
 
@@ -347,8 +303,6 @@ div.tocify {
 
 .tocify-subheader .tocify-item {
   font-size: 0.90em;
-  padding-left: 25px;
-  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -514,12 +468,12 @@ shinyApp(ui = ui, server = server)</code></pre>
 </ul>
 <div id="choose-a-skin" class="section level2">
 <h2><span class="header-section-number">3.1</span> Choose a Skin</h2>
-<p>We’ll start by choosing a skin for the app. In the <code>dashboardPage()</code> function, change <code>skin = &quot;purple&quot;</code> to a colour of your choice. To see all the available skin colours, see the <a href="https://rstudio.github.io/shinydashboard/appearance.html">shinydashboard documentation</a>. Run the app to see how this affects the app’s appearance.</p>
+<p>We’ll start by choosing a skin for the app. In the <code>dashboardPage()</code> function, change <code>skin = "purple"</code> to a colour of your choice. To see all the available skin colours, see the <a href="https://rstudio.github.io/shinydashboard/appearance.html">shinydashboard documentation</a>. Run the app to see how this affects the app’s appearance.</p>
 <p><a href="scaffolding_files/03-science-tools/02-change-skin.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
 </div>
 <div id="choose-a-title" class="section level2">
 <h2><span class="header-section-number">3.2</span> Choose a Title</h2>
-<p>Next we’ll choose a title for the app. In the <code>dashboardHeader()</code> function, enter <code>title = &quot;My App Title&quot;</code>. Run the app to see how this affects the app’s appearance. Your title may be too long to display, in which case, <a href="https://rstudio.github.io/shinydashboard/appearance.html#long-titles">see here</a>.</p>
+<p>Next we’ll choose a title for the app. In the <code>dashboardHeader()</code> function, enter <code>title = "My App Title"</code>. Run the app to see how this affects the app’s appearance. Your title may be too long to display, in which case, <a href="https://rstudio.github.io/shinydashboard/appearance.html#long-titles">see here</a>.</p>
 <p><a href="scaffolding_files/03-science-tools/03-change-title.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
 </div>
 <div id="build-the-sidebar" class="section level2">
@@ -544,9 +498,9 @@ shinyApp(ui = ui, server = server)</code></pre>
 <div id="customise" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> Customise</h3>
 <ul>
-<li><p>Change the menu items’ text to read <code>&quot;Stimulus Features&quot;</code> and <code>&quot;Results&quot;</code> (Hint: so far the menu items are labelled <code>&quot;Process Cats&quot;</code> and <code>&quot;Process Frogs&quot;</code>, so replace this text with desired tab label).</p></li>
-<li><p>Change the <code>tabName</code>s to something appropriate, such as <code>&quot;stim-features&quot;</code> and <code>&quot;results&quot;</code>.</p></li>
-<li><p>Choose suitable icons for the menu options, such as <code>&quot;cube&quot;</code> and <code>&quot;calculator&quot;</code>. See <a href="https://fontawesome.com/icons" class="uri">https://fontawesome.com/icons</a> for a list of all available icon names.</p></li>
+<li><p>Change the menu items’ text to read <code>"Stimulus Features"</code> and <code>"Results"</code> (Hint: so far the menu items are labelled <code>"Process Cats"</code> and <code>"Process Frogs"</code>, so replace this text with desired tab label).</p></li>
+<li><p>Change the <code>tabName</code>s to something appropriate, such as <code>"stim-features"</code> and <code>"results"</code>.</p></li>
+<li><p>Choose suitable icons for the menu options, such as <code>"cube"</code> and <code>"calculator"</code>. See <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a> for a list of all available icon names.</p></li>
 </ul>
 <p><a href="scaffolding_files/03-science-tools/04-build-sidebar.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
 </div>
@@ -590,7 +544,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="box-content" class="section level2">
 <h2><span class="header-section-number">4.3</span> Box Content</h2>
-<p>Have another look at the <a href="http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/">example app</a>. Let’s include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give “cm”, “mm”, and “inches” as options. Set the <code>inputId</code> argument to something like <code>&quot;size_units&quot;</code>. For a refresher, see <a href="data-input.html#Data-Widgets"><code>selectInput()</code></a> from the last tutorial.</p>
+<p>Have another look at the <a href="http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/">example app</a>. Let’s include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give “cm”, “mm”, and “inches” as options. Set the <code>inputId</code> argument to something like <code>"size_units"</code>. For a refresher, see <a href="data-input.html#Data-Widgets"><code>selectInput()</code></a> from the last tutorial.</p>
 <details>
 <p><summary>Show Solution…</summary></p>
 <pre class="r"><code>selectInput(&quot;size_units&quot;, &quot;Units&quot;, c(&quot;cm&quot;, &quot;mm&quot;, &quot;inches&quot;))</code></pre>
@@ -626,7 +580,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 <pre><code>## [1] 736.6</code></pre>
 <p>How Reactive Values work:</p>
 <ul>
-<li><p>Reactive values are essentially functions, which provide the current reactive value as output when evaluated (e.g. <code>myValue()</code>).</p></li>
+<li><p>Reactive values are essentially functions, which provide the current reactive value as output when evaluated (e.g. <code>myValue()</code>).</p></li>
 <li><p>The user’s input is handily stored in a list object called <code>input</code>. Specific values can be extracted with <code>input$inputID</code>.</p></li>
 <li><p>Reactive values are assigned in the form <code>myValue &lt;- reactive({ 2 * input$userNumber })</code>.</p></li>
 </ul>
@@ -714,6 +668,54 @@ $(document).ready(function () {
 });
 
 
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
 </script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
