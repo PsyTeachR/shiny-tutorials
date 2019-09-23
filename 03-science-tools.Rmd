@@ -30,6 +30,7 @@ sel, " > .header-section-number {
 }
 </style>
 "))
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
 ```{r, echo=F, results="hide", message=F, warning=F}
@@ -54,9 +55,13 @@ to_mm <- function(val, units){
 }
 ```
 
-This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building an app which will help us calculate the [visual angle](https://en.wikipedia.org/wiki/Visual_angle) of a stimulus. I'd recommend you complete the earlier Shiny tutorials ([Creating your first app](01-first-app.html) and [Data collection](data-input.html)) as we'll be building on that knowledge here.
+This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building a simple app which will help us calculate the [visual angle](https://en.wikipedia.org/wiki/Visual_angle) of a stimulus. I'd recommend you complete the earlier Shiny tutorials ([Creating your first app](01-first-app.html) and [Data collection](data-input.html)) as we'll be building on that knowledge here.
 
 This tutorial will also introduce [reactivity](https://shiny.rstudio.com/articles/understanding-reactivity.html), which refers to how the app will react to the user's input, and [shinydashboard](https://rstudio.github.io/shinydashboard/), a [package](defs.html#package) which lets us build much more visually pleasing and user-friendly Shiny apps.
+
+&emsp;<i class="fa fa-file-powerpoint"></i>&ensp;[Tutorial Slides (.pptx format)](pres/03-science-tools.pptx)
+
+&emsp;<i class="fa fa-file"></i>&ensp;[Tutorial Slides (.odp format)](pres/03-science-tools.odp)
 
 # Try the Demo App
 
@@ -381,4 +386,4 @@ lapply(1:15, function(i){
 })
 ```
 
-<a href="scaffolding_files/03-science-tools/13-iterative-ui.R" download><i class="fas fa-file-code" style="font-size:18px;">  Here's some example code that uses this method.</i></a>
+<a href="scaffolding_files/03-science-tools/13-iterative-ui.R" download><i class="fas fa-file-code" style="font-size:18px;">  Here's an example app that uses this method (.R)</i></a>

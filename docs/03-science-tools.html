@@ -27,6 +27,8 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -387,8 +389,10 @@ div.tocify {
   display: none;
 }
 </style>
-<p>This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building an app which will help us calculate the <a href="https://en.wikipedia.org/wiki/Visual_angle">visual angle</a> of a stimulus. I’d recommend you complete the earlier Shiny tutorials (<a href="01-first-app.html">Creating your first app</a> and <a href="data-input.html">Data collection</a>) as we’ll be building on that knowledge here.</p>
+<p>This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building a simple app which will help us calculate the <a href="https://en.wikipedia.org/wiki/Visual_angle">visual angle</a> of a stimulus. I’d recommend you complete the earlier Shiny tutorials (<a href="01-first-app.html">Creating your first app</a> and <a href="data-input.html">Data collection</a>) as we’ll be building on that knowledge here.</p>
 <p>This tutorial will also introduce <a href="https://shiny.rstudio.com/articles/understanding-reactivity.html">reactivity</a>, which refers to how the app will react to the user’s input, and <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a>, a <a href="defs.html#package">package</a> which lets us build much more visually pleasing and user-friendly Shiny apps.</p>
+<p> <i class="fa fa-file-powerpoint"></i> <a href="pres/03-science-tools.pptx">Tutorial Slides (.pptx format)</a></p>
+<p> <i class="fa fa-file"></i> <a href="pres/03-science-tools.odp">Tutorial Slides (.odp format)</a></p>
 <div id="try-the-demo-app" class="section level1">
 <h1><span class="header-section-number">1</span> Try the Demo App</h1>
 <p>Try the simple <a href="http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/">Visual Angle app</a>. You’ll have something very similar built by the end of this tutorial.</p>
@@ -646,7 +650,7 @@ Note: The <code>tags$style()</code> function is an example of inline css in our 
     paste(&quot;Box &quot;, i, &quot;&#39;s content will go here...&quot;, sep=&quot;&quot;)
   )
 })</code></pre>
-<p><a href="scaffolding_files/03-science-tools/13-iterative-ui.R" download><i class="fas fa-file-code" style="font-size:18px;"> Here’s some example code that uses this method.</i></a></p>
+<p><a href="scaffolding_files/03-science-tools/13-iterative-ui.R" download><i class="fas fa-file-code" style="font-size:18px;"> Here’s an example app that uses this method (.R)</i></a></p>
 </div>
 </div>
 

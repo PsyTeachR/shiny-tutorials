@@ -1,5 +1,5 @@
 ---
-title: "Data Input"
+title: "Data Collection"
 output:
   html_document:
     self_contained: no
@@ -15,12 +15,10 @@ output:
 library(shiny)
 ```
 
-
 ## Resources
 
 * [Shiny Widgets Gallery](http://shiny.rstudio.com/gallery/widget-gallery.html)  
 * [shinyapps.io](http://www.shinyapps.io/)  
-
 
 ## Try the demo
 
