@@ -354,10 +354,10 @@ div.tocify {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -395,7 +395,7 @@ div.tocify {
 <p> <i class="fa fa-file"></i> <a href="pres/03-science-tools.odp">Tutorial Slides (.odp format)</a></p>
 <div id="try-the-demo-app" class="section level1">
 <h1><span class="header-section-number">1</span> Try the Demo App</h1>
-<p>Try the simple <a href="http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/">Visual Angle app</a>. You’ll have something very similar built by the end of this tutorial.</p>
+<p>Try the simple <a href="http://shiny.psy.gla.ac.uk/jackt/VisualAngle/">Visual Angle app</a>. You’ll have something very similar built by the end of this tutorial.</p>
 </div>
 <div id="setup" class="section level1">
 <h1><span class="header-section-number">2</span> Setup</h1>
@@ -437,21 +437,21 @@ to_mm &lt;- function(val, units){
 
 
 ui &lt;- dashboardPage(
-  
+
   skin = &quot;purple&quot;,
-  
+
   dashboardHeader(),
-  
+
   dashboardSidebar(),
-  
+
   dashboardBody()
-  
+
 )
 
 server &lt;- function(input, output) {
-  
-  
-  
+
+
+
 }
 
 shinyApp(ui = ui, server = server)</code></pre>
@@ -548,7 +548,7 @@ shinyApp(ui = ui, server = server)</code></pre>
 </div>
 <div id="box-content" class="section level2">
 <h2><span class="header-section-number">4.3</span> Box Content</h2>
-<p>Have another look at the <a href="http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/">example app</a>. Let’s include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give “cm”, “mm”, and “inches” as options. Set the <code>inputId</code> argument to something like <code>"size_units"</code>. For a refresher, see <a href="data-input.html#Data-Widgets"><code>selectInput()</code></a> from the last tutorial.</p>
+<p>Have another look at the <a href="http://shiny.psy.gla.ac.uk/jackt/VisualAngle/">example app</a>. Let’s include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give “cm”, “mm”, and “inches” as options. Set the <code>inputId</code> argument to something like <code>"size_units"</code>. For a refresher, see <a href="data-input.html#Data-Widgets"><code>selectInput()</code></a> from the last tutorial.</p>
 <details>
 <p><summary>Show Solution…</summary></p>
 <pre class="r"><code>selectInput(&quot;size_units&quot;, &quot;Units&quot;, c(&quot;cm&quot;, &quot;mm&quot;, &quot;inches&quot;))</code></pre>
