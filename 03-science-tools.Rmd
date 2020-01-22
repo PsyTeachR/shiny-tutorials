@@ -65,7 +65,7 @@ This tutorial will also introduce [reactivity](https://shiny.rstudio.com/article
 
 # Try the Demo App
 
-Try the simple [Visual Angle app](http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/). You'll have something very similar built by the end of this tutorial.
+Try the simple [Visual Angle app](http://shiny.psy.gla.ac.uk/jackt/VisualAngle/). You'll have something very similar built by the end of this tutorial.
 
 # Setup
 
@@ -251,7 +251,7 @@ Your App's Stimulus Features tab should now look something like this:
 
 ## Box Content
 
-Have another look at the [example app](http://shiny.psy.gla.ac.uk/JackTaylor/VisualAngle/). Let's include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give "cm", "mm", and "inches" as options. Set the `inputId` argument to something like `"size_units"`. For a refresher, see [`selectInput()`](data-input.html#Data-Widgets) from the last tutorial.
+Have another look at the [example app](http://shiny.psy.gla.ac.uk/jackt/VisualAngle/). Let's include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give "cm", "mm", and "inches" as options. Set the `inputId` argument to something like `"size_units"`. For a refresher, see [`selectInput()`](data-input.html#Data-Widgets) from the last tutorial.
 
 <details>
 <summary>Show Solution...</summary>

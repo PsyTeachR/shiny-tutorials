@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tools for Science</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="03-science-tools.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Shiny Tutorials</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Tools for Science</h1>
+
+</div>
+
+
+<style type="text/css">
+/* more spacing before headings */
+.section h1 {padding-top: 90px;}
+.section h2 {padding-top: 80px;}
+</style>
+<style>h2 > span, h3 > span, h4 > span, h5 > span, h6 > span, h7 > span, h8 > span, h9 > span, h10 > .header-section-number {
+  display: none;
+}
+</style>
+<p>This tutorial will show you how Shiny can also be used to build handy apps which can be used in research and teaching. As an example, we will be building a simple app which will help us calculate the <a href="https://en.wikipedia.org/wiki/Visual_angle">visual angle</a> of a stimulus. I’d recommend you complete the earlier Shiny tutorials (<a href="01-first-app.html">Creating your first app</a> and <a href="data-input.html">Data collection</a>) as we’ll be building on that knowledge here.</p>
+<p>This tutorial will also introduce <a href="https://shiny.rstudio.com/articles/understanding-reactivity.html">reactivity</a>, which refers to how the app will react to the user’s input, and <a href="https://rstudio.github.io/shinydashboard/">shinydashboard</a>, a <a href="defs.html#package">package</a> which lets us build much more visually pleasing and user-friendly Shiny apps.</p>
+<p> <i class="fa fa-file-powerpoint"></i> <a href="pres/03-science-tools.pptx">Tutorial Slides (.pptx format)</a></p>
+<p> <i class="fa fa-file"></i> <a href="pres/03-science-tools.odp">Tutorial Slides (.odp format)</a></p>
+<div id="try-the-demo-app" class="section level1">
+<h1><span class="header-section-number">1</span> Try the Demo App</h1>
+<p>Try the simple <a href="http://shiny.psy.gla.ac.uk/jackt/VisualAngle/">Visual Angle app</a>. You’ll have something very similar built by the end of this tutorial.</p>
+</div>
+<div id="setup" class="section level1">
+<h1><span class="header-section-number">2</span> Setup</h1>
+<p>First of all, we’ll need to install the necessary packages (especially <code>shinydashboard</code>), create our shiny project, and check everything runs okay…</p>
+<div id="install-shinydashboard" class="section level2">
+<h2><span class="header-section-number">2.1</span> Install <code>shinydashboard</code></h2>
+<p>This tutorial uses <code>shinydashboard</code>. If you’ve not already done so, install the latest version of <code>shinydashboard</code> with:</p>
+<pre class="r"><code>install.packages(&quot;shinydashboard&quot;)</code></pre>
+</div>
+<div id="new-shiny-project" class="section level2">
+<h2><span class="header-section-number">2.2</span> New Shiny Project</h2>
+<p>Create a new Shiny Web Application project, and name it something like, “Visual-Angle-Calculator”. For a reminder of how to do this, have a look at <a href="01-first-app.html">the Creating your First App</a> tutorial.</p>
+</div>
+<div id="replace-the-default-code" class="section level2">
+<h2><span class="header-section-number">2.3</span> Replace the default code</h2>
+<p><a href="01-first-app.html#14_default_demo_app">As in the first tutorial</a>, this will display the code for the default demo app. Delete all of the default code, and replace it with the following (or download the scaffolding file below):</p>
+<pre class="r"><code>library(shiny)
+library(shinydashboard)
+library(tidyverse)
+
+# function for calculating visual angle
+get_va &lt;- function(size, distance, approx=F){
+  if (approx) {
+    rad &lt;- atan(size/distance)
+  } else {
+    rad &lt;- 2*atan(size/(2*distance))
+  }
+  rad*(180/pi)  # radians to angle
+}
+# function for converting to consistent units (mm)
+to_mm &lt;- function(val, units){
+  recode(
+    units,
+    &quot;mm&quot;=as.double(val),
+    &quot;cm&quot;=as.double(val)*10,
+    &quot;inches&quot;=as.double(val)*25.4
+  )
+}
+
+
+ui &lt;- dashboardPage(
+  
+  skin = &quot;purple&quot;,
+  
+  dashboardHeader(),
+  
+  dashboardSidebar(),
+  
+  dashboardBody()
+  
+)
+
+server &lt;- function(input, output) {
+  
+  
+  
+}
+
+shinyApp(ui = ui, server = server)</code></pre>
+<p><a href="scaffolding_files/03-science-tools/01-base.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="run-the-app" class="section level2">
+<h2><span class="header-section-number">2.4</span> Run the App</h2>
+<p>Click on Run App in the top right corner of the <a href="defs.html#panes">source pane</a>, or enter <code>shiny::runApp()</code> in the console. You’ll notice that so far we just have an empty app.</p>
+</div>
+</div>
+<div id="building-the-ui---basics" class="section level1">
+<h1><span class="header-section-number">3</span> Building the UI - Basics</h1>
+<p>The <code>shinydashboard</code> <a href="defs.html#ui">UI</a> consists of three main parts, given as arguments to the <code>dashboardPage()</code> function:</p>
+<ul>
+<li><p>the header, <code>dashboardHeader()</code></p></li>
+<li><p>the sidebar, <code>dashboardSidebar()</code></p></li>
+<li><p>the main body, <code>dashboardBody()</code></p></li>
+</ul>
+<div id="choose-a-skin" class="section level2">
+<h2><span class="header-section-number">3.1</span> Choose a Skin</h2>
+<p>We’ll start by choosing a skin for the app. In the <code>dashboardPage()</code> function, change <code>skin = "purple"</code> to a colour of your choice. To see all the available skin colours, see the <a href="https://rstudio.github.io/shinydashboard/appearance.html">shinydashboard documentation</a>. Run the app to see how this affects the app’s appearance.</p>
+<p><a href="scaffolding_files/03-science-tools/02-change-skin.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="choose-a-title" class="section level2">
+<h2><span class="header-section-number">3.2</span> Choose a Title</h2>
+<p>Next we’ll choose a title for the app. In the <code>dashboardHeader()</code> function, enter <code>title = "My App Title"</code>. Run the app to see how this affects the app’s appearance. Your title may be too long to display, in which case, <a href="https://rstudio.github.io/shinydashboard/appearance.html#long-titles">see here</a>.</p>
+<p><a href="scaffolding_files/03-science-tools/03-change-title.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="build-the-sidebar" class="section level2">
+<h2><span class="header-section-number">3.3</span> Build the Sidebar</h2>
+<div id="copy-and-paste" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Copy and Paste</h3>
+<p>Change the <code>dashboardSidebar()</code> function to include the <code>sidebarMenu()</code> argument like so:</p>
+<pre class="r"><code>dashboardSidebar(
+  sidebarMenu(
+    menuItem(&quot;Process Cats&quot;, tabName=&quot;felinetab&quot;, icon=icon(&quot;cat&quot;)),
+    menuItem(&quot;Process Frogs&quot;, tabName=&quot;amphibiantab&quot;, icon=icon(&quot;frog&quot;))
+  )
+)</code></pre>
+<p>Run the app to see how this affects the app’s appearance.</p>
+<p>The <code>sidebarMenu()</code> function tells<code>shinydashboard</code> to render a menu in the sidebar. Each <code>menuItem()</code> function then adds an item to that menu with desired text, name, and icon.</p>
+<ul>
+<li><p>The text is what the option will be displayed as to the user.</p></li>
+<li><p>The <code>tabName</code> will be used as a reference when building separate tabs later on.</p></li>
+<li><p>The icon is selected using <a href="https://fontawesome.com/icons">FontAwesome</a> names.</p></li>
+</ul>
+</div>
+<div id="customise" class="section level3">
+<h3><span class="header-section-number">3.3.2</span> Customise</h3>
+<ul>
+<li><p>Change the menu items’ text to read <code>"Stimulus Features"</code> and <code>"Results"</code> (Hint: so far the menu items are labelled <code>"Process Cats"</code> and <code>"Process Frogs"</code>, so replace this text with desired tab label).</p></li>
+<li><p>Change the <code>tabName</code>s to something appropriate, such as <code>"stim-features"</code> and <code>"results"</code>.</p></li>
+<li><p>Choose suitable icons for the menu options, such as <code>"cube"</code> and <code>"calculator"</code>. See <a href="https://fontawesome.com/icons">https://fontawesome.com/icons</a> for a list of all available icon names.</p></li>
+</ul>
+<p><a href="scaffolding_files/03-science-tools/04-build-sidebar.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+</div>
+</div>
+<div id="building-the-ui---body" class="section level1">
+<h1><span class="header-section-number">4</span> Building the UI - Body</h1>
+<p>By now your App should look something like this:</p>
+<p><img src="images/03-science-tools/01-bare-app.png" /></p>
+<p>The next step is to build the body for our tabs.</p>
+<div id="tab-items" class="section level2">
+<h2><span class="header-section-number">4.1</span> Tab Items</h2>
+<p>The content for different tabs is created using the <code>tabItems()</code> function. Each tab is then described using the <code>tabItem()</code> function, embedded <em>inside</em> <code>tabItems()</code>.</p>
+<p>Change the <code>dashboardBody()</code> function to include the <code>tabItems</code> function, and describe the stimulus features tab like so:</p>
+<pre class="r"><code>dashboardBody(
+  tabItems(
+    tabItem(
+      tabName = &quot;stim-features&quot;,
+      fluidRow(
+        # the tab&#39;s content will go in here
+      )
+    )
+  )
+)</code></pre>
+<p>Note that the <code>tabItem()</code> function “knows” which tab you are referring to because of the <code>tabName</code> argument, so make sure this matches the tab name you gave the stimulus features tab (above).</p>
+<p>New tabs are created by giving additional <code>tabItem()</code> functions as arguments to <code>tabItems()</code>.</p>
+<p><a href="scaffolding_files/03-science-tools/05-tab-items.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="boxes" class="section level2">
+<h2><span class="header-section-number">4.2</span> Boxes</h2>
+<p>A distinctive feature of <code>shinydashboard</code> is <a href="https://rstudio.github.io/shinydashboard/structure.html#boxes"><code>boxes</code></a>. These are a really easy way of organising your content in Shiny Apps. We can create a box using the <code>box()</code> argument, and putting it inside the <code>fluidRow()</code> function for the stimulus features tab.</p>
+<p>Replace the section of your code that reads, <code># the tab's content will go in here</code>, with the following:</p>
+<pre class="r"><code>box(
+  width = 6,  # an integer between 1 and 12, where 1 is 1/12 of the possible width
+  title = &quot;Stimulus Size&quot;,
+  numericInput(&quot;size&quot;, &quot;Size&quot;, value=3.2, min=0.01, step=0.01, width=&quot;100%&quot;)
+)</code></pre>
+<p>Your App’s Stimulus Features tab should now look something like this:</p>
+<p><img src="images/03-science-tools/02-first-box.png" /></p>
+<p><a href="scaffolding_files/03-science-tools/06-boxes.R"><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="box-content" class="section level2">
+<h2><span class="header-section-number">4.3</span> Box Content</h2>
+<p>Have another look at the <a href="http://shiny.psy.gla.ac.uk/jackt/VisualAngle/">example app</a>. Let’s include the drop-down menu that lets you select the measurement units for your Stimulus Size. Make sure to give “cm”, “mm”, and “inches” as options. Set the <code>inputId</code> argument to something like <code>"size_units"</code>. For a refresher, see <a href="data-input.html#Data-Widgets"><code>selectInput()</code></a> from the last tutorial.</p>
+<details>
+<p><summary>Show Solution…</summary></p>
+<pre class="r"><code>selectInput(&quot;size_units&quot;, &quot;Units&quot;, c(&quot;cm&quot;, &quot;mm&quot;, &quot;inches&quot;))</code></pre>
+</details>
+<p>  </p>
+<p><a href="scaffolding_files/03-science-tools/07-box-content.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="adding-new-boxes" class="section level2">
+<h2><span class="header-section-number">4.4</span> Adding New Boxes</h2>
+<p>Let’s add the next box on the Stimulus Features tab, which will be used to input the distance of the stimulus from the participant. After the bracket which closes the <code>box()</code> function for our stimulus size box, add a comma (and new line for neatness), and create another <code>box()</code>.</p>
+<p>Most of the arguments can then be copied over, but make sure to change the <code>title</code>, and the <code>inputId</code> and <code>label</code> arguments for the user input.</p>
+<details>
+<p><summary>Show Solution…</summary></p>
+<pre class="r"><code>box(
+  width = 6,  # an integer between 1 and 12, where 1 is 1/12 of the possible width
+  title = &quot;Stimulus Distance&quot;,
+  numericInput(&quot;distance&quot;, &quot;Distance&quot;, value=3.2, min=0.01, step=0.01, width=&quot;100%&quot;),
+  selectInput(&quot;distance_units&quot;, &quot;Units&quot;, c(&quot;cm&quot;, &quot;mm&quot;, &quot;inches&quot;))
+)</code></pre>
+</details>
+<p>  </p>
+<p><a href="scaffolding_files/03-science-tools/08-adding-new-boxes.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+</div>
+<div id="server-logic" class="section level1">
+<h1><span class="header-section-number">5</span> Server Logic</h1>
+<p>Now that we have our basic UI built, we want to calculate our reactive values, and then render the output in our app’s results tab. Anything calculated after the app first initialises needs to be calculated in the <a href="defs.html#server">server</a>. These values are <a href="defs.html#reactivity"><em>reactive</em></a> in the sense that they <em>react</em> to the user’s input. Reactivity is the most confusing thing about shiny, but also the coolest.</p>
+<div id="give-the-features-consistent-units" class="section level2">
+<h2><span class="header-section-number">5.1</span> Give the Features Consistent Units</h2>
+<p>Since the user could have theoretically given their stimulus’ size in mm, but its distance in inches, the first step is to put these in consistent units. Thankfully, we have a handy <code>to_mm()</code> function, which takes two arguments: a numeric value, and its current units (“mm”, “cm”, “inches”). The function returns a single numeric value, which is the same value but in mm.</p>
+<p>As an example:</p>
+<pre class="r"><code>to_mm(29, &quot;inches&quot;)</code></pre>
+<pre><code>## [1] 736.6</code></pre>
+<p>How Reactive Values work:</p>
+<ul>
+<li><p>Reactive values are essentially functions, which provide the current reactive value as output when evaluated (e.g. <code>myValue()</code>).</p></li>
+<li><p>The user’s input is handily stored in a list object called <code>input</code>. Specific values can be extracted with <code>input$inputID</code>.</p></li>
+<li><p>Reactive values are assigned in the form <code>myValue &lt;- reactive({ 2 * input$userNumber })</code>.</p></li>
+</ul>
+<p>To get our stimulus size and distance values, we can add something like this to our server, referencing the user’s values with the inputIDs we added in our UI:</p>
+<pre class="r"><code>stim_size &lt;- reactive({
+  to_mm(input$size, input$size_units)
+})
+
+stim_distance &lt;- reactive({
+  to_mm(input$distance, input$distance_units)
+})</code></pre>
+<p><a href="scaffolding_files/03-science-tools/09-consistent-units.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="calculate-visual-angle" class="section level2">
+<h2><span class="header-section-number">5.2</span> Calculate Visual Angle</h2>
+<p>We can now use these reactive values to calculate another reactive value, the visual angle of the stimulus:</p>
+<pre class="r"><code>visual_angle &lt;- reactive({
+  get_va(stim_size(), stim_distance())
+})</code></pre>
+<p><a href="scaffolding_files/03-science-tools/10-calculate-visual-angle" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="render-results-reactively" class="section level2">
+<h2><span class="header-section-number">5.3</span> Render Results Reactively</h2>
+<p>Now we have the visual angle calculated, we just need to show it to the user. To do this, there are a number of “render” functions, which allow us to render UI features reactively. For example, <code>renderPlot()</code> lets us show the user a reactively-rendered graph. These render functions work similarly to the <code>reactive()</code> function.</p>
+<p>As we just want to show the user the output, we’re going to render an <a href="https://rstudio.github.io/shinydashboard/structure.html#infobox">infoBox</a> (similar to a valueBox), with the <code>renderInfoBox()</code> function.</p>
+<pre class="r"><code>output$results_box &lt;- renderInfoBox({
+  infoBox(
+    &quot;Visual Angle&quot;, paste0(visual_angle(), &quot; degrees&quot;),
+    icon=icon(&quot;eye&quot;), color=&quot;purple&quot;
+  )
+})</code></pre>
+<p><a href="scaffolding_files/03-science-tools/11-render-results-reactively.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+<div id="adding-new-tabs-content" class="section level2">
+<h2><span class="header-section-number">5.4</span> Adding New Tabs’ Content</h2>
+<p>If you run the app now, you’ll notice that we get a whole lot of nothing on the results tab. This is because we’ve rendered the info box with our results, but we still need to say where we want to put it. Put a comma after the last tabItem, and add the following code.</p>
+<pre class="r"><code>tabItem(
+  tabName = &quot;results&quot;,
+  fluidRow(
+    infoBoxOutput(&quot;results_box&quot;),
+    tags$style(&quot;#results_box {width:100%;}&quot;)
+  )
+)</code></pre>
+<p class="alert alert-info">
+Note: The <code>tags$style()</code> function is an example of inline css in our code. In this example we’re styling our info box to have a width of 100%
+</p>
+<p><a href="scaffolding_files/03-science-tools/12-adding-new-tabs-content.R" download><i class="fas fa-file-code" style="font-size:18px;"> Scaffolding file (.R)</i></a></p>
+</div>
+</div>
+<div id="conclusion" class="section level1">
+<h1><span class="header-section-number">6</span> Conclusion</h1>
+<p>They might seem confusing, but shiny and shinydashboard are great ways to create interactive apps to help solve common problems (or demonstrate difficult ideas) in Science, which require your users to have minimal or no coding experience in R. Shinydashboard in particular makes it easy to build a professional-looking and intuitive UI. Your shiny apps can work great as standalone applications, or can be <a href="https://debruine.github.io/tutorials/packages.html">built into your packages</a> to provide a friendlier face to your users.</p>
+</div>
+<div id="bonus-material" class="section level1">
+<h1><span class="header-section-number">7</span> Bonus Material</h1>
+<div id="iterative-ui-generation" class="section level2">
+<h2><span class="header-section-number">7.1</span> Iterative UI Generation</h2>
+<p>This is something I planned on covering but didn’t have enough time to include. Often I find that I want to build several very similar UI features. Rather than just copy and pasting the code, it’s possible to build the elements iteratively. This can make your code much easier to read and debug. One way of doing this is with a <code>lapply()</code> loop:</p>
+<pre class="r"><code>lapply(1:15, function(i){
+  box(
+    width = 6,
+    title = paste(&quot;Box Number&quot;, i, sep=&quot; &quot;),
+    paste(&quot;Box &quot;, i, &quot;&#39;s content will go here...&quot;, sep=&quot;&quot;)
+  )
+})</code></pre>
+<p><a href="scaffolding_files/03-science-tools/13-iterative-ui.R" download><i class="fas fa-file-code" style="font-size:18px;"> Here’s an example app that uses this method (.R)</i></a></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
