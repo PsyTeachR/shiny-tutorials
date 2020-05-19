@@ -446,7 +446,7 @@ select_demo <- selectInput(
   )
 )
 ```
-`r knit_print.shiny.tag(select_demo)[1]`  
+`r htmltools::knit_print.shiny.tag(select_demo)[1]`  
 </td><tr>
 <tr><td>[`radioButtons`](https://shiny.rstudio.com/reference/shiny/1.0.1/checkboxGroupInput.html)
 </td><td>
@@ -458,7 +458,7 @@ radio_demo <- radioButtons(
   inline = TRUE
 )
 ```
-`r knit_print.shiny.tag(radio_demo)[1]`  
+`r htmltools::knit_print.shiny.tag(radio_demo)[1]`  
 
 </td><tr> <tr><td> [`checkboxInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/checkboxInput.html)
 </td><td>
@@ -468,7 +468,7 @@ checkbox_demo <- checkboxInput(
   "I consent to more 80s music references"
 )
 ```
-`r knit_print.shiny.tag(checkbox_demo)[1]`  
+`r htmltools::knit_print.shiny.tag(checkbox_demo)[1]`  
 
 </td><tr> <tr><td> [`checkboxGroupInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/checkboxGroupInput.html)
 </td><td>
@@ -486,7 +486,7 @@ cbgroup_demo <- checkboxGroupInput(
   )
 )
 ```
-`r knit_print.shiny.tag(cbgroup_demo)[1]`  
+`r htmltools::knit_print.shiny.tag(cbgroup_demo)[1]`  
 
 </td><tr> <tr><td> [`numericInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/numericInput.html)
 </td><td>
@@ -497,7 +497,7 @@ number_demo <- numericInput(
   min = 0, max = 20, step = 1, value = 0 # answer = 6
 )
 ```
-`r knit_print.shiny.tag(number_demo)[1]`  
+`r htmltools::knit_print.shiny.tag(number_demo)[1]`  
 
 </td><tr> <tr><td> [`sliderInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/sliderInput.html)
 </td><td>
@@ -508,7 +508,7 @@ slider_demo <- sliderInput(
   min = 0, max = 100, step = 1, value = 50
 )
 ```
-`r knit_print.shiny.tag(slider_demo)[1]`
+`r htmltools::knit_print.shiny.tag(slider_demo)[1]`
 
 <small>(this will only display correctly in a Shiny app, not on a static webpage)</small>
 
@@ -522,7 +522,7 @@ date_demo <- dateInput(
   # right answer is 1983-02-26
 )
 ```
-`r knit_print.shiny.tag(date_demo)[1]`
+`r htmltools::knit_print.shiny.tag(date_demo)[1]`
 
 <small>(this will only display correctly in a Shiny app, not on a static webpage)</small>
 
@@ -535,7 +535,7 @@ daterange_demo <- dateRangeInput(
   # right answer is 1983-01-29 to 1983-04-09
 )
 ```
-`r knit_print.shiny.tag(daterange_demo)[1]`
+`r htmltools::knit_print.shiny.tag(daterange_demo)[1]`
 
 <small>(this will only display correctly in a Shiny app, not on a static webpage)</small>
 
@@ -547,7 +547,7 @@ text_demo <- textInput(
   "What is your favourite 80s band?"
 )
 ```
-`r knit_print.shiny.tag(text_demo)[1]`
+`r htmltools::knit_print.shiny.tag(text_demo)[1]`
 
 </td><tr> <tr><td> [`textAtreaInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/textAreaInput.html)
 </td><td>
@@ -557,7 +557,7 @@ textarea_demo <- textAreaInput(
   "What do you think about this exercise?"
 )
 ```
-`r knit_print.shiny.tag(textarea_demo)[1]`
+`r htmltools::knit_print.shiny.tag(textarea_demo)[1]`
 
 </td><tr> <tr><td> [`passwordInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/passwordInput.html)
 </td><td>
@@ -567,14 +567,14 @@ password_demo <- passwordInput(
   "Tell me a secret."
 )
 ```
-`r knit_print.shiny.tag(password_demo)[1]`
+`r htmltools::knit_print.shiny.tag(password_demo)[1]`
 
 </td><tr> <tr><td> [`submitButton`](https://shiny.rstudio.com/reference/shiny/1.0.1/submitButton.html)
 </td><td>
 ```{r}
 submit_demo <- submitButton("Submit")
 ```
-`r knit_print.shiny.tag(submit_demo)[1]`
+`r htmltools::knit_print.shiny.tag(submit_demo)[1]`
 
 </td><tr> <tr><td> [`actionButton`](https://shiny.rstudio.com/reference/shiny/1.0.1/actionButton.html)
 </td><td>
@@ -583,7 +583,7 @@ action_demo <- actionButton(
   "clear", "Clear Form"
 )
 ```
-`r knit_print.shiny.tag(action_demo)[1]`
+`r htmltools::knit_print.shiny.tag(action_demo)[1]`
 
 </td><tr> <tr><td> [`downloadButton`](https://shiny.rstudio.com/reference/shiny/1.0.1/downloadButton.html)
 </td><td>
@@ -592,7 +592,7 @@ download_demo <- downloadButton(
   "download", "Download"
 )
 ```
-`r knit_print.shiny.tag(download_demo)[1]`
+`r htmltools::knit_print.shiny.tag(download_demo)[1]`
 
 </td><tr> <tr><td> [`fileInput`](https://shiny.rstudio.com/reference/shiny/1.0.1/fileInput.html)
 </td><td>
@@ -601,14 +601,14 @@ file_demo <- fileInput(
   "upload", "Upload a PDF", accept = "pdf"
 )
 ```
-`r knit_print.shiny.tag(file_demo)[1]`
+`r htmltools::knit_print.shiny.tag(file_demo)[1]`
 
 </td><tr> <tr><td> [`helpText`](https://shiny.rstudio.com/reference/shiny/1.0.1/helpText.html)
 </td><td>
 ```{r}
 help_demo <- helpText("You can write help text in your form this way")
 ```
-`r knit_print.shiny.tag(help_demo)[1]`
+`r htmltools::knit_print.shiny.tag(help_demo)[1]`
 </td></tr>
 </table>
 </form>
