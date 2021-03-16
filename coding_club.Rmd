@@ -1,0 +1,26 @@
+---
+title: "Coding Club"
+output:
+  html_document:
+    self_contained: no
+    toc: no
+    toc_depth: 2
+    code_folding: show
+    toc_float: 
+      collapsed: false
+    number_sections: false
+---
+
+We will be building a Buzzfeed-style Quiz app using Shiny. This page will document our progress.
+
+Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You don't need to have any experience apart from basic R. If you can complete the [intro shiny tutorial](01-first-app.html) then you should be fine.
+
+
+
+## Setting Up the Framework 
+
+2021-03-17 14:00 (GMT) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+
+1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/coding_club/)
+1. Download the [template](https://github.com/debruine/shiny_template)
+1. You can access the code for the final app at <https://github.com/PsyTeachR/shiny-tutorials/tree/master/coding_club>

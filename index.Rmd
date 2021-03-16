@@ -17,6 +17,7 @@ These are a collection of tutorials introducing Shiny R.
 * [Creating your first app](01-first-app.html)
 * [Data collection](data-input.html)
 * [Tools for Science](03-science-tools.html)
+* [Coding Club](coding_club.html)
 
 ### Resources
 

@@ -1,0 +1,32 @@
+ul.sidebar-menu {
+  font-size: 1.5em;
+}
+
+.box-header {
+  padding: 0 10px 0 0;
+}
+.box-header h3 {
+  width: 100%;
+  padding: 10px;
+}
+
+#say_hi {
+  background-color: rgb(221, 75, 57);
+  color: white;
+  font-weight: bold;
+}
+
+.img-btn {
+  background-color: transparent;
+  border: 5px solid transparent;
+  padding: 0;
+}
+
+.img-btn.selected[id$="_r"] { border-color: red; }
+.img-btn.selected[id$="_o"] { border-color: orange; }
+.img-btn.selected[id$="_y"] { border-color: yellow; }
+.img-btn.selected[id$="_g"] { border-color: green; }
+.img-btn.selected[id$="_b"] { border-color: blue; }
+.img-btn.selected[id$="_p"] { border-color: purple; }
+
+.shiny-flow-layout > div { width: 310px; }
