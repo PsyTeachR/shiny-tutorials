@@ -24,3 +24,22 @@ Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You
 1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/coding_club/)
 1. Download the [template](https://github.com/debruine/shiny_template)
 1. You can access the code for the final app at <https://github.com/PsyTeachR/shiny-tutorials/tree/master/coding_club>
+
+In this first class, we:
+
+* discussed the structure of a shiny app 
+* edited the main tab to have a collapsible box for each question 
+* added six custom image buttons for the first question
+* wrote a functin to more easily set up a custom image button
+* edited the www/custom.css file to remove the background and padding from the custom image buttons
+
+To prep for the next meeting, I'd like you to:
+
+* decide what your quiz theme and questions will be
+* find images for each question ([Pixabay](https://pixabay.com) is a good site for open-access images)
+* set up a few questions with image buttons
+* Edit the info tab to include image citation information
+
+The password for the [class recording](https://uofglasgow.zoom.us/rec/share/lTH8SniBrkm3PilcTG0I0_KlSNqVnWNelq_4A5vE-VQ9h9_IECoNHjfdo30of_q9.0UOkISRJLtYCX0wA) is on the coding club channel of the Methods and MetaScience Team. Contact Lisa to be added if you're at Glasgow, or to ask for the password if you're not.
+
+You can download a zip file with the [code for our current progress](files/quiz1.zip).
