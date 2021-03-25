@@ -3,6 +3,10 @@ output_dir: 'docs'
 author: Lisa DeBruine
 navbar:
   title: Shiny Tutorials
+  left:
+    - text: "psyTeachR"
+      icon: fa-home
+      href: /
 output:
   html_document:
     theme: flatly

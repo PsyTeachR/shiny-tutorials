@@ -13,12 +13,22 @@
 
 <title>Data Collection</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,13 +36,19 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -45,32 +61,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="shiny.css" type="text/css" />
 
@@ -81,10 +72,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -101,40 +88,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -162,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -174,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -185,10 +145,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -200,7 +173,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,13 +307,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -358,7 +330,13 @@ div.tocify {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li>
+  <a href="/">
+    <span class="fas fa-home"></span>
+     
+    psyTeachR
+  </a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -367,11 +345,11 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 </ul>
@@ -384,20 +362,20 @@ div.tocify {
 </div>
 
 
-<div id="resources" class="section level2">
-<h2><span class="header-section-number">0.1</span> Resources</h2>
+<div id="resources" class="section level2" number="0.1">
+<h2 number="0.1"><span class="header-section-number">0.1</span> Resources</h2>
 <ul>
 <li><a href="http://shiny.rstudio.com/gallery/widget-gallery.html">Shiny Widgets Gallery</a><br />
 </li>
 <li><a href="http://www.shinyapps.io/">shinyapps.io</a></li>
 </ul>
 </div>
-<div id="try-the-demo" class="section level2">
-<h2><span class="header-section-number">0.2</span> Try the demo</h2>
+<div id="try-the-demo" class="section level2" number="0.2">
+<h2 number="0.2"><span class="header-section-number">0.2</span> Try the demo</h2>
 <p>Go to the <a href="https://debruine.shinyapps.io/datacollect/">demo questionnaire</a> and fill out the brief survey.</p>
 </div>
-<div id="your-first-input-app" class="section level2">
-<h2><span class="header-section-number">0.3</span> Your first input app</h2>
+<div id="your-first-input-app" class="section level2" number="0.3">
+<h2 number="0.3"><span class="header-section-number">0.3</span> Your first input app</h2>
 <p>Create a new RStudio project for your data input apps.</p>
 <p>Copy the following code to a new file and save it as <code>app.R</code> in a new directory in this project named <code>inputdemo</code>. Also create a directory named <code>responses</code> inside the <code>inputdemo</code> directory. Run the app with <code>runApp('inputdemo')</code>.</p>
 <pre class="r"><code>library(shiny)
@@ -563,10 +541,10 @@ server = function(input, output, session) {
 
 shinyApp(ui, server)</code></pre>
 </div>
-<div id="step-by-step" class="section level2">
-<h2><span class="header-section-number">0.4</span> Step-by-step</h2>
-<div id="framework" class="section level3">
-<h3><span class="header-section-number">0.4.1</span> Framework</h3>
+<div id="step-by-step" class="section level2" number="0.4">
+<h2 number="0.4"><span class="header-section-number">0.4</span> Step-by-step</h2>
+<div id="framework" class="section level3" number="0.4.1">
+<h3 number="0.4.1"><span class="header-section-number">0.4.1</span> Framework</h3>
 <p>This framework gives you a full-page questionnaire with no feedback panel. You can use this framework or the one above.</p>
 <pre class="r"><code>library(shiny)
 library(ggplot2)
@@ -787,8 +765,8 @@ server = function(input, output, session) {
 
 shinyApp(ui, server)</code></pre>
 </div>
-<div id="data-widgets" class="section level3">
-<h3><span class="header-section-number">0.4.2</span> Data Widgets</h3>
+<div id="data-widgets" class="section level3" number="0.4.2">
+<h3 number="0.4.2"><span class="header-section-number">0.4.2</span> Data Widgets</h3>
 <p>In the section for data input (<code>sidebarPanel</code> or <code>fluidRow</code>), you can add a <a href="defs.html#widget">widget</a> for each question, then some action buttons for submitting the data or other actions. The <a href="http://shiny.rstudio.com/gallery/widget-gallery.html">Shiny Widgets Gallery</a> is a useful reference for choosing the right input widgets for your questions.</p>
 <form>
 <table>
@@ -809,7 +787,7 @@ shinyApp(ui, server)</code></pre>
   )
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="toto_lyrics">Complete these famous lyrics:
+<label class="control-label" id="toto_lyrics-label" for="toto_lyrics">Complete these famous lyrics:
   "I ***** ***** ***** down in Africa"</label>
 <div>
 <select id="toto_lyrics"><option value="" selected></option>
@@ -817,7 +795,7 @@ shinyApp(ui, server)</code></pre>
 <option value="sense the rain">sense the rain</option>
 <option value="bless the rain">bless the rain</option>
 <option value="guess it rains">guess it rains</option></select>
-<script type="application/json" data-for="toto_lyrics">{}</script>
+<script type="application/json" data-for="toto_lyrics">{"plugins":["selectize-plugin-a11y"]}</script>
 </div>
 </div>
 </td>
@@ -833,8 +811,8 @@ shinyApp(ui, server)</code></pre>
   c(&quot;yes&quot;, &quot;no&quot;), 
   inline = TRUE
 )</code></pre>
-<div id="toto_pref" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
-<label class="control-label" for="toto_pref">Do you like Toto?</label>
+<div id="toto_pref" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline" role="radiogroup" aria-labelledby="toto_pref-label">
+<label class="control-label" id="toto_pref-label" for="toto_pref">Do you like Toto?</label>
 <div class="shiny-options-group">
 <label class="radio-inline">
 <input type="radio" name="toto_pref" value="yes" checked="checked"/>
@@ -884,8 +862,8 @@ shinyApp(ui, server)</code></pre>
     &quot;T&#39;Pau&quot; = &quot;tpau&quot;              # china in your hand 1987-11-14
   )
 )</code></pre>
-<div id="fam_bands" class="form-group shiny-input-checkboxgroup shiny-input-container">
-<label class="control-label" for="fam_bands">Which artists had a UK number one single in the 80s?</label>
+<div id="fam_bands" class="form-group shiny-input-checkboxgroup shiny-input-container" role="group" aria-labelledby="fam_bands-label">
+<label class="control-label" id="fam_bands-label" for="fam_bands">Which artists had a UK number one single in the 80s?</label>
 <div class="shiny-options-group">
 <div class="checkbox">
 <label>
@@ -944,7 +922,7 @@ shinyApp(ui, server)</code></pre>
   min = 0, max = 20, step = 1, value = 0 # answer = 6
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="madonna_songs">How many UK number one songs did Madonna have in the 80s?</label>
+<label class="control-label" id="madonna_songs-label" for="madonna_songs">How many UK number one songs did Madonna have in the 80s?</label>
 <input id="madonna_songs" type="number" class="form-control" value="0" min="0" max="20" step="1"/>
 </div>
 </td>
@@ -960,8 +938,8 @@ shinyApp(ui, server)</code></pre>
   min = 0, max = 100, step = 1, value = 50
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="rate80">How would you rate the 80s musically, on a scale from 0-100?</label>
-<input class="js-range-slider" id="rate80" data-min="0" data-max="100" data-from="50" data-step="1" data-grid="true" data-grid-num="10" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
+<label class="control-label" id="rate80-label" for="rate80">How would you rate the 80s musically, on a scale from 0-100?</label>
+<input class="js-range-slider" id="rate80" data-skin="shiny" data-min="0" data-max="100" data-from="50" data-step="1" data-grid="true" data-grid-num="10" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
 </div>
 <p><small>(this will only display correctly in a Shiny app, not on a static webpage)</small></p>
 </td>
@@ -978,8 +956,8 @@ shinyApp(ui, server)</code></pre>
   # right answer is 1983-02-26
 )</code></pre>
 <div id="africa_date" class="shiny-date-input form-group shiny-input-container">
-<label class="control-label" for="africa_date">Africa by Toto reached its peak position of #3 in the UK charts on what date?</label>
-<input type="text" class="form-control" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="year" data-min-date="1980-01-01" data-max-date="1989-12-31" data-date-autoclose="true" data-date-dates-disabled="null" data-date-days-of-week-disabled="null"/>
+<label class="control-label" id="africa_date-label" for="africa_date">Africa by Toto reached its peak position of #3 in the UK charts on what date?</label>
+<input type="text" class="form-control" aria-labelledby="africa_date-label" title="Date format: yyyy-mm-dd" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="year" data-min-date="1980-01-01" data-max-date="1989-12-31" data-date-autoclose="true" data-date-dates-disabled="null" data-date-days-of-week-disabled="null"/>
 </div>
 <p><small>(this will only display correctly in a Shiny app, not on a static webpage)</small></p>
 </td>
@@ -996,11 +974,13 @@ shinyApp(ui, server)</code></pre>
   # right answer is 1983-01-29 to 1983-04-09
 )</code></pre>
 <div id="africa_date" class="shiny-date-range-input form-group shiny-input-container">
-<label class="control-label" for="africa_date">What was the full UK Top 100 chart run of Africa by Toto?</label>
-<div class="input-daterange input-group">
-<input class="input-sm form-control" type="text" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="year" data-min-date="1980-01-01" data-max-date="1989-12-31" data-date-autoclose="true"/>
-<span class="input-group-addon"> to </span>
-<input class="input-sm form-control" type="text" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="year" data-min-date="1980-01-01" data-max-date="1989-12-31" data-date-autoclose="true"/>
+<label class="control-label" id="africa_date-label" for="africa_date">What was the full UK Top 100 chart run of Africa by Toto?</label>
+<div class="input-daterange input-group input-group-sm">
+<input class="form-control" type="text" aria-labelledby="africa_date-label" title="Date format: yyyy-mm-dd" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="year" data-min-date="1980-01-01" data-max-date="1989-12-31" data-date-autoclose="true"/>
+<span class="input-group-addon input-group-prepend input-group-append">
+<span class="input-group-text"> to </span>
+</span>
+<input class="form-control" type="text" aria-labelledby="africa_date-label" title="Date format: yyyy-mm-dd" data-date-language="en" data-date-week-start="0" data-date-format="yyyy-mm-dd" data-date-start-view="year" data-min-date="1980-01-01" data-max-date="1989-12-31" data-date-autoclose="true"/>
 </div>
 </div>
 <p><small>(this will only display correctly in a Shiny app, not on a static webpage)</small></p>
@@ -1016,7 +996,7 @@ shinyApp(ui, server)</code></pre>
   &quot;What is your favourite 80s band?&quot;
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="fav_band">What is your favourite 80s band?</label>
+<label class="control-label" id="fav_band-label" for="fav_band">What is your favourite 80s band?</label>
 <input id="fav_band" type="text" class="form-control" value=""/>
 </div>
 </td>
@@ -1031,7 +1011,7 @@ shinyApp(ui, server)</code></pre>
   &quot;What do you think about this exercise?&quot;
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="think">What do you think about this exercise?</label>
+<label class="control-label" id="think-label" for="think">What do you think about this exercise?</label>
 <textarea id="think" class="form-control"></textarea>
 </div>
 </td>
@@ -1046,7 +1026,7 @@ shinyApp(ui, server)</code></pre>
   &quot;Tell me a secret.&quot;
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="password">Tell me a secret.</label>
+<label class="control-label" id="password-label" for="password">Tell me a secret.</label>
 <input id="password" type="password" class="form-control" value=""/>
 </div>
 </td>
@@ -1070,7 +1050,7 @@ shinyApp(ui, server)</code></pre>
 <pre class="r"><code>action_demo &lt;- actionButton(
   &quot;clear&quot;, &quot;Clear Form&quot;
 )</code></pre>
-<button id="clear" type="button" class="btn btn-default action-button">Clear Form</button>
+<p><button id="clear" type="button" class="btn btn-default action-button">Clear Form</button></p>
 </td>
 <tr>
 <tr>
@@ -1082,7 +1062,7 @@ shinyApp(ui, server)</code></pre>
   &quot;download&quot;, &quot;Download&quot;
 )</code></pre>
 <a id="download" class="btn btn-default shiny-download-link " href="" target="_blank" download>
-<i class="fa fa-download"></i>
+<i class="fa fa-download" role="presentation" aria-label="download icon"></i>
 Download
 </a>
 </td>
@@ -1096,17 +1076,17 @@ Download
   &quot;upload&quot;, &quot;Upload a PDF&quot;, accept = &quot;pdf&quot;
 )</code></pre>
 <div class="form-group shiny-input-container">
-<label class="control-label" for="upload">Upload a PDF</label>
+<label class="control-label" id="upload-label" for="upload">Upload a PDF</label>
 <div class="input-group">
-<label class="input-group-btn">
+<label class="input-group-btn input-group-prepend">
 <span class="btn btn-default btn-file">
 Browse...
-<input id="upload" name="upload" type="file" style="display: none;" accept="pdf"/>
+<input id="upload" name="upload" type="file" style="position: absolute !important; top: -99999px !important; left: -99999px !important;" accept="pdf"/>
 </span>
 </label>
 <input type="text" class="form-control" placeholder="No file selected" readonly="readonly"/>
 </div>
-<div id="upload_progress" class="progress progress-striped active shiny-file-input-progress">
+<div id="upload_progress" class="progress active shiny-file-input-progress">
 <div class="progress-bar"></div>
 </div>
 </div>
@@ -1124,8 +1104,8 @@ Browse...
 </table>
 </form>
 </div>
-<div id="data-saving" class="section level3">
-<h3><span class="header-section-number">0.4.3</span> Data Saving</h3>
+<div id="data-saving" class="section level3" number="0.4.3">
+<h3 number="0.4.3"><span class="header-section-number">0.4.3</span> Data Saving</h3>
 <pre class="r"><code>saveData &lt;- function(input) {
   # put variables in a data frame
   data &lt;- data.frame(matrix(nrow=1,ncol=0))
@@ -1155,8 +1135,8 @@ Browse...
   )
 }</code></pre>
 </div>
-<div id="submit-action" class="section level3">
-<h3><span class="header-section-number">0.4.4</span> Submit Action</h3>
+<div id="submit-action" class="section level3" number="0.4.4">
+<h3 number="0.4.4"><span class="header-section-number">0.4.4</span> Submit Action</h3>
 <p>Use the <code>observeEvent</code> function to define what happens when you click the submit button. It goes inside the server function. The following code handles multiple selections and checkbox groups (which are very tricky to store in a table) and adds a submit_time column.</p>
 <pre class="r"><code>  # When the Submit button is clicked, save the form data
   observeEvent(input$submit, {
@@ -1165,8 +1145,8 @@ Browse...
   })</code></pre>
 <p>You’re done with a basic questionnaire at this point if you don’t want to give feedback to the participant. If you aren’t showing feedback, you can reassure the user that their response was submitted with code like <code>showNotification(response, duration = 0, type = "message")</code>.</p>
 </div>
-<div id="feedback" class="section level3">
-<h3><span class="header-section-number">0.4.5</span> Feedback</h3>
+<div id="feedback" class="section level3" number="0.4.5">
+<h3 number="0.4.5"><span class="header-section-number">0.4.5</span> Feedback</h3>
 <p>First, you need to create a function for loading and <a href="defs.html#concatenate">conatenating</a> all of the previously saved data files.</p>
 <pre class="r"><code>loadData &lt;- function() {
   # read all the files into a list
@@ -1196,8 +1176,8 @@ Browse...
       loadData()
     })</code></pre>
 </div>
-<div id="upload-to-your-r-server" class="section level3">
-<h3><span class="header-section-number">0.4.6</span> Upload to your R server</h3>
+<div id="upload-to-your-r-server" class="section level3" number="0.4.6">
+<h3 number="0.4.6"><span class="header-section-number">0.4.6</span> Upload to your R server</h3>
 <p>If you don’t have access to an R server, you can sign up for a free account at <a href="http://www.shinyapps.io/">shinyapps.io</a>. Get your <a href="https://www.shinyapps.io/admin/#/tokens">token and secret</a> and add them to the code below.</p>
 <pre class="r"><code>rsconnect::setAccountInfo(
   name=&#39;my-username&#39;, 
@@ -1208,8 +1188,8 @@ Browse...
 rsconnect::deployApp(&quot;inputdemo&quot;)</code></pre>
 </div>
 </div>
-<div id="activity" class="section level2">
-<h2><span class="header-section-number">0.5</span> Activity</h2>
+<div id="activity" class="section level2" number="0.5">
+<h2 number="0.5"><span class="header-section-number">0.5</span> Activity</h2>
 <ol style="list-style-type: decimal">
 <li>Create your own survey</li>
 <li>Create a feedback method</li>
@@ -1228,7 +1208,7 @@ rsconnect::deployApp(&quot;inputdemo&quot;)</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -1246,7 +1226,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -1272,7 +1252,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
