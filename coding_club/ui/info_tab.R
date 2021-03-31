@@ -2,7 +2,7 @@
 info_tab <- tabItem(
   tabName = "info_tab",
   h2("Info"),
-  p("This app is a demo app for the Methods & MetaScience Network</a> Coding Club at the University of Glasgow."),
+  p("This app is a demo app for the Methods & MetaScience Network Coding Club at the University of Glasgow."),
 
   h3("Image Attributions"),
   HTML('<ul><li>Image by <a href="https://pixabay.com/users/nika_akin-13521770/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4642061">Nika Akin</a> from <a href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4642061">Pixabay</a></li>

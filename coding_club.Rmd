@@ -19,18 +19,18 @@ Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You
 
 ## Setting Up the Framework 
 
-2021-03-17 14:00 (GMT) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+2021-03-17 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
 
 1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/coding_club/)
 1. Download the [template](https://github.com/debruine/shiny_template)
 1. You can access the code for the final app at <https://github.com/PsyTeachR/shiny-tutorials/tree/master/coding_club>
 
-In this first class, we:
+In this first session, we:
 
 * discussed the structure of a shiny app 
 * edited the main tab to have a collapsible box for each question 
 * added six custom image buttons for the first question
-* wrote a functin to more easily set up a custom image button
+* wrote a function to more easily set up a custom image button
 * edited the www/custom.css file to remove the background and padding from the custom image buttons
 
 To prep for the next meeting, I'd like you to:
@@ -40,6 +40,31 @@ To prep for the next meeting, I'd like you to:
 * set up a few questions with image buttons
 * Edit the info tab to include image citation information
 
-The password for the [class recording](https://uofglasgow.zoom.us/rec/share/lTH8SniBrkm3PilcTG0I0_KlSNqVnWNelq_4A5vE-VQ9h9_IECoNHjfdo30of_q9.0UOkISRJLtYCX0wA) is on the coding club channel of the Methods and MetaScience Team. Contact Lisa to be added if you're at Glasgow, or to ask for the password if you're not.
+The password for the [session recording](https://uofglasgow.zoom.us/rec/share/lTH8SniBrkm3PilcTG0I0_KlSNqVnWNelq_4A5vE-VQ9h9_IECoNHjfdo30of_q9.0UOkISRJLtYCX0wA) is on the coding club channel of the Methods and MetaScience Team. Contact Lisa to be added if you're at Glasgow, or to ask for the password if you're not.
 
 You can download a zip file with the [code for our current progress](files/quiz1.zip).
+
+## Button Actions
+
+2021-03-31 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+
+In this second session, we:
+
+* used CSS to set the style of selected and unselected buttons
+* used `observeEvent()` to change the style of buttons when clicking on them
+* wrote a custom function to do this for all image buttons, using their question number and colour name
+
+To prep for the next meeting, I'd just like you to:
+
+* get your app caught up to the same place we left off (all image buttons displaying the correct outlines when you click on them)
+* try out a few other input options for the final question, like [`selectInput()`](https://shiny.rstudio.com/reference/shiny/1.6.0/selectInput.html), 
+[`radioButtons()`](https://shiny.rstudio.com/reference/shiny/1.6.0/radioButtons.html), 
+[`textInput()`](https://shiny.rstudio.com/reference/shiny/1.6.0/textInput.html), or
+[`sliderInput()`](https://shiny.rstudio.com/reference/shiny/1.6.0/sliderInput.html).
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/PAjIgwcdRBVNATStImFEeLQzmg3m6YGxjYZ8_Y3kjh1bYGPoeDVQvBDrOc4vzi3q.sHHPrI5czz3904RM)
+* zip file with the [code for our current progress](files/quiz2.zip)
+
+## Outputs
+
+2021-04-14 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)

@@ -13,12 +13,22 @@
 
 <title>Second Shiny App</title>
 
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
@@ -26,13 +36,19 @@
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -45,32 +61,7 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
 
 <link rel="stylesheet" href="shiny.css" type="text/css" />
 
@@ -81,10 +72,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -101,40 +88,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -162,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -174,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -185,10 +145,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -200,7 +173,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -335,13 +307,13 @@ div.tocify {
 
 
 <!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row-fluid">
-<div class="col-xs-12 col-sm-4 col-md-3">
+<div class="row">
+<div class="col-sm-12 col-md-4 col-lg-3">
 <div id="TOC" class="tocify">
 </div>
 </div>
 
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -358,7 +330,13 @@ div.tocify {
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        
+        <li>
+  <a href="/">
+    <span class="fas fa-home"></span>
+     
+    psyTeachR
+  </a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -367,11 +345,11 @@ div.tocify {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 </ul>
@@ -391,16 +369,16 @@ div.tocify {
 <li>Packages: <code>shiny</code>, <code>ggplot2</code>, <code>dplyr</code></li>
 <li>Time: ~ 20 minutes</li>
 </ul>
-<div id="create-a-framework-app" class="section level1">
-<h1><span class="header-section-number">1</span> Create a Framework App</h1>
+<div id="create-a-framework-app" class="section level1" number="1">
+<h1 number="1"><span class="header-section-number">1</span> Create a Framework App</h1>
 <p><input type="checkbox" class="progress"></p>
-<div id="set-up-the-project" class="section level2">
-<h2><span class="header-section-number">1.1</span> Set up the project</h2>
+<div id="set-up-the-project" class="section level2" number="1.1">
+<h2 number="1.1"><span class="header-section-number">1.1</span> Set up the project</h2>
 <p>See the <a href="01-first-app.html">first tutorial</a> for how to do this. Name it <code>effect_guess</code>.</p>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="add-blank-framework" class="section level2">
-<h2><span class="header-section-number">1.2</span> Add blank framework</h2>
+<div id="add-blank-framework" class="section level2" number="1.2">
+<h2 number="1.2"><span class="header-section-number">1.2</span> Add blank framework</h2>
 <p>If you set up a default Shiny project in RStudio, it will create a file called <code>app.R</code> with the demo app. Replace the text (or delete the file and create a new file called <code>app.R</code>) with the framework below. Save it and run the app.</p>
 <pre class="r"><code># Libraries ----
 library(shiny)
@@ -438,8 +416,8 @@ In RStudio, you can display the document outline using <code>shift-cmd-O</code> 
 </p>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="replace-default-text" class="section level2">
-<h2><span class="header-section-number">1.3</span> Replace default text</h2>
+<div id="replace-default-text" class="section level2" number="1.3">
+<h2 number="1.3"><span class="header-section-number">1.3</span> Replace default text</h2>
 <p>In this app, we’re going to show a plot with a random effect size for a between-group design with a random N and ask the user to guess the effect size). So the first thing you should do is explain what your app is doing in the explanatory text. You can also add a title.</p>
 <p class="alert alert-info">
 As always, run your app after every unit of changes. It’s easier to catch typos and mistakes if you’ve only changed a little bit since the last time you successfully ran the app.
@@ -462,11 +440,11 @@ As always, run your app after every unit of changes. It’s easier to catch typo
   )</code></pre>
 </div>
 </div>
-<div id="add-input-and-output" class="section level1">
-<h1><span class="header-section-number">2</span> Add Input and Output</h1>
+<div id="add-input-and-output" class="section level1" number="2">
+<h1 number="2"><span class="header-section-number">2</span> Add Input and Output</h1>
 <p><input type="checkbox" class="progress"></p>
-<div id="sliderinput" class="section level2">
-<h2><span class="header-section-number">2.1</span> sliderInput</h2>
+<div id="sliderinput" class="section level2" number="2.1">
+<h2 number="2.1"><span class="header-section-number">2.1</span> sliderInput</h2>
 <p>We’re going to use the <code>sliderInput</code> function to let the user guess the effect size in the plot.</p>
 <pre class="r"><code>    sidebarPanel(
       # . . d_guess slide ----
@@ -478,8 +456,8 @@ I use periods/full stops (<code>.</code>) to indent the document outline comment
 </p>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="actionbutton" class="section level2">
-<h2><span class="header-section-number">2.2</span> actionButton</h2>
+<div id="actionbutton" class="section level2" number="2.2">
+<h2 number="2.2"><span class="header-section-number">2.2</span> actionButton</h2>
 <p>We want the user to be able to create a new simulated dataset, so we can make a button that generates a new dataset, graphs it, and resets the effect size slider. Add this widget function after the <code>sliderInput</code> widget function (and run the app).</p>
 <pre class="r"><code>    sidebarPanel(
       # . . d_guess slide ----
@@ -508,8 +486,8 @@ Error : Error sourcing /Users/lisad/apps/custom-app/app.R</code></pre>
 </div>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="textoutput" class="section level2">
-<h2><span class="header-section-number">2.3</span> textOutput</h2>
+<div id="textoutput" class="section level2" number="2.3">
+<h2 number="2.3"><span class="header-section-number">2.3</span> textOutput</h2>
 <p>Outputs normally go in the main panel (although they don’t have to). You can use the function <code>textOutput</code> to interactively display some text to the user. We want to let people know how many observations are in the randomly generated data, so we’ll use a <code>textOutput</code> function with the ID <code>"current_n"</code>.</p>
 <pre class="r"><code>    mainPanel(
       # . . current_n output ----
@@ -530,7 +508,7 @@ Error : Error sourcing /Users/lisad/apps/custom-app/app.R</code></pre>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -548,7 +526,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
@@ -574,7 +552,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
