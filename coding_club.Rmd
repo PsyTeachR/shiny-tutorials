@@ -19,7 +19,7 @@ Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You
 
 ## 1. Setting Up the Framework 
 
-2021-03-17 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+2021-03-17 14:00 (Europe/London)
 
 1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/coding_club/)
 1. Download the [template](https://github.com/debruine/shiny_template)
@@ -46,7 +46,7 @@ You can download a zip file with the [code for our current progress](files/quiz1
 
 ## 2. Button Actions
 
-2021-03-31 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+2021-03-31 14:00 (Europe/London)
 
 In this second session, we:
 
@@ -69,4 +69,27 @@ Resources:
 
 ## 3. Outputs
 
-2021-04-14 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+2021-04-14 14:00 (Europe/London)
+
+In this third session, we:
+
+* updated the custom function `Q()` to close the current question box and open the next one
+* created a new feedback tab and added it to the UI
+* used `observeEvent()` to respond to clicking the submit button
+* used `reactiveValues()` to create values for saving the image button answers and plot
+* made a feedback plot with `outputPlot()` and `renderPlot()` that creates a plot from the quiz answers
+
+To prep for the next meeting, I'd like you to:
+
+* make your feedback plot nicer, especially thinking about font sizes
+* if you want further challenge, add feedback text in addition to the plot using `textOutput()` and `renderText()`
+
+Resources:
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/hFnvznxyycp41nc6vCjGNXFA0W39s2yLQ3AikPlyXXCJP3LorWtzsE1jW90COms.4D1tvi9ZqlnX25wf)
+* zip file with the [code for our current progress](files/quiz3.zip)
+
+## 4. Saving Data
+
+2021-04-28 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+
