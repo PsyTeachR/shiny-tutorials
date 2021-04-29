@@ -91,5 +91,22 @@ Resources:
 
 ## 4. Saving Data
 
-2021-04-28 14:00 (Europe/London) [Zoom link](http://uofglasgow.zoom.us/j/93838448011)
+2021-04-28 14:00 (Europe/London)
 
+In this fourth session, we:
+
+* Added a button to allow participants to save their data
+* added conditional properties so the button could only be used once, after the quiz was completed
+* Learned to save data in a CSV file
+* Read the full data from the saved file and created a feedback visualisation
+* Discussed pros and cons of local storage of saved data
+
+Resources:
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/gNGYoC65CziY_pcmEi03PXCwbu30bLueCKkJOuiK5qzqdgNxQGQmMhFGbPUyItJR.Rkivv76FW8oDwR7a)
+* [persistent data storage in Shiny](https://shiny.rstudio.com/articles/persistent-data-storage.html)
+* zip file with the [code for our final progress](files/quiz4.zip)
+
+## 5. TBA
+
+2021-05-12 14:00 (Europe/London)
