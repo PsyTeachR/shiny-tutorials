@@ -11,13 +11,25 @@ output:
     number_sections: false
 ---
 
-We will be building a Buzzfeed-style Quiz app using Shiny. This page will document our progress.
-
 Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You don't need to have any experience apart from basic R. If you can complete the [intro shiny tutorial](01-first-app.html) then you should be fine.
 
-
+## Distribution Simulation App
 
 ## 1. Setting Up the Framework 
+
+2021-05-12 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
+
+1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/simulate/)
+1. Download the [template](https://github.com/debruine/shiny_template)
+1. You can access the code for the final app at <https://github.com/debruine/shiny_apps/tree/master/simulate>
+
+
+
+# Past Sessions
+
+## Buzzfeed-style App
+
+### 1. Setting Up the Framework 
 
 2021-03-17 14:00 (Europe/London)
 
@@ -44,7 +56,7 @@ The password for the [session recording](https://uofglasgow.zoom.us/rec/share/lT
 
 You can download a zip file with the [code for our current progress](files/quiz1.zip).
 
-## 2. Button Actions
+### 2. Button Actions
 
 2021-03-31 14:00 (Europe/London)
 
@@ -67,7 +79,7 @@ Resources:
 * [session recording](https://uofglasgow.zoom.us/rec/share/PAjIgwcdRBVNATStImFEeLQzmg3m6YGxjYZ8_Y3kjh1bYGPoeDVQvBDrOc4vzi3q.sHHPrI5czz3904RM)
 * zip file with the [code for our current progress](files/quiz2.zip)
 
-## 3. Outputs
+### 3. Outputs
 
 2021-04-14 14:00 (Europe/London)
 
@@ -89,7 +101,7 @@ Resources:
 * [session recording](https://uofglasgow.zoom.us/rec/share/hFnvznxyycp41nc6vCjGNXFA0W39s2yLQ3AikPlyXXCJP3LorWtzsE1jW90COms.4D1tvi9ZqlnX25wf)
 * zip file with the [code for our current progress](files/quiz3.zip)
 
-## 4. Saving Data
+### 4. Saving Data
 
 2021-04-28 14:00 (Europe/London)
 
@@ -107,12 +119,6 @@ Resources:
 * [persistent data storage in Shiny](https://shiny.rstudio.com/articles/persistent-data-storage.html)
 * zip file with the [code for our final progress](files/quiz4.zip)
 
-## 5. Simulation App 1
 
-1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/simulate/)
-1. Download the [template](https://github.com/debruine/shiny_template)
-1. You can access the code for the final app at <https://github.com/debruine/shiny_apps/tree/master/simulate>
-
-2021-05-12 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
 
 
