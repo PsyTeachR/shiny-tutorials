@@ -107,6 +107,12 @@ Resources:
 * [persistent data storage in Shiny](https://shiny.rstudio.com/articles/persistent-data-storage.html)
 * zip file with the [code for our final progress](files/quiz4.zip)
 
-## 5. TBA
+## 5. Simulation App 1
 
-2021-05-12 14:00 (Europe/London)
+1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/simulate/)
+1. Download the [template](https://github.com/debruine/shiny_template)
+1. You can access the code for the final app at <https://github.com/debruine/shiny_apps/tree/master/simulate>
+
+2021-05-12 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
+
+
