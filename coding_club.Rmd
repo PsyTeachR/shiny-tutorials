@@ -15,15 +15,38 @@ Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You
 
 ## Distribution Simulation App
 
-## 1. Setting Up the Framework 
+### 1. Setting Up the Framework 
 
-2021-05-12 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
+2021-05-12 14:00 (Europe/London)
 
 1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/simulate/)
 1. Download the [template](https://github.com/debruine/shiny_template)
 1. You can access the code for the final app at <https://github.com/debruine/shiny_apps/tree/master/simulate>
 
+In this first session, we:
 
+* discussed the structure of a shiny app 
+* created inputs for a random uniform distribution (`runif()`)
+* generated random data with the input parameters and created a plot
+* output the plot
+
+To prep for the next meeting, I'd like you to:
+
+* create another tab with inputs and a plot for the normal distribution
+* make your ggplot prettier (e.g., set color and fill for the plot)
+
+Resources:
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/9xNKJg3banlJUPXMZ_aNwMdfnGl1bnkUUjiWEpShdzLhaybDHbUDVxZGcC8w3drC.SqVu7wB77G2fQAqR) (contact Lisa for the password)
+* zip file with the [code for our  progress](files/sim1.zip)
+
+## 2. Input checking
+
+2021-05-26 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
+
+In this second session, we will learn how to check the user input for errors, such as impossible values, and handle these without crashing.
+
+---------
 
 # Past Sessions
 
