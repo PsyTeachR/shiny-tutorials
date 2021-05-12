@@ -33,14 +33,14 @@ In this first session, we:
 To prep for the next meeting, I'd like you to:
 
 * create another tab with inputs and a plot for the normal distribution
-* make your ggplot prettier (e.g., set color and fill for the plot)
+* make your ggplot prettier (e.g., set colour and fill for the histogram)
 
 Resources:
 
 * [session recording](https://uofglasgow.zoom.us/rec/share/9xNKJg3banlJUPXMZ_aNwMdfnGl1bnkUUjiWEpShdzLhaybDHbUDVxZGcC8w3drC.SqVu7wB77G2fQAqR) (contact Lisa for the password)
 * zip file with the [code for our  progress](files/sim1.zip)
 
-## 2. Input checking
+### 2. Input checking
 
 2021-05-26 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
 
