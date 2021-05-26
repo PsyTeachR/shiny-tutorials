@@ -42,9 +42,26 @@ Resources:
 
 ### 2. Input checking
 
-2021-05-26 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
+2021-05-26 14:00 (Europe/London)
 
-In this second session, we will learn how to check the user input for errors, such as impossible values, and handle these without crashing.
+In this second session, we added the normal distribution tab, used a fluidRow to put the plot next to the input, and learned how to check the user input for errors, such as impossible values, and handle these without crashing.
+
+To prep for the next meeting, I'd like you to:
+
+* add error checking for the normal distribution tab
+* create another tab with inputs and a plot for the binomial distribution
+
+Resources:
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/9e33zZ_xdL9vaqrD1pMBxb7ENKW0H3VldCo2WU5u6weNZ1VTVDMawQecMaKcS2S8.z1TCqr0zV1Ab-ofy) (contact Lisa for the password)
+* zip file with the [code for our  progress](files/sim2.zip)
+
+### 3. Distribution comparisons
+
+2021-06-09 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
+
+In this third session, we will restructure the simulation functions to keep a record of previously simulated data to make faceted plots for comparison.
+
 
 ---------
 
