@@ -60,8 +60,33 @@ Resources:
 
 2021-06-09 14:00 (Europe/London) [Zoom link](https://uofglasgow.zoom.us/j/93838448011)
 
-In this third session, we will restructure the simulation functions to keep a record of previously simulated data to make faceted plots for comparison.
+In this third session, we restructured the simulation functions to keep a record of previously simulated data to make faceted plots for comparison. We learned a lot about debugging. 
 
+The video ends with an unresolved bug. The resolution is to make sure that `input$unif_submit` is definitely an integer when you add it to the data table. I really don't know why this fixes it. So the relevant code in the `observeEvent()` function for `unif_submit` should be:
+
+```{r, eval = FALSE}
+data <- data.frame(
+    x = x,
+    sample = as.integer(input$unif_submit),
+    n = input$unif_n,
+    min = input$unif_min,
+    max = input$unif_max
+)
+```
+
+To do:
+
+* Update the norm and binomial functions to display multiple plots
+* Make your ggplots prettier
+* Make it handle plots with different parameters well. You can either give all facets the same values, or set the axes to vary by facet (or you can give users the option to choose which)
+* Think about how you'd want to visualise these distributions and create your own interface options
+
+Resources:
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/oQJCmOuAx4TJkZMiEWH6V0Q66921trhkgLMoB0bkIHUnuFgL-_DZrGnAaWvtKW3W.lpgRRxeV6B4wRmrs) (contact Lisa for the password)
+* zip file with the [code for our  progress](files/sim3.zip)
+
+Coding Club will be pausing for the summer, but watch here for a restart in the fall.
 
 ---------
 

@@ -327,7 +327,28 @@ $(document).ready(function () {
 <div id="distribution-comparisons" class="section level3">
 <h3>3. Distribution comparisons</h3>
 <p>2021-06-09 14:00 (Europe/London) <a href="https://uofglasgow.zoom.us/j/93838448011">Zoom link</a></p>
-<p>In this third session, we will restructure the simulation functions to keep a record of previously simulated data to make faceted plots for comparison.</p>
+<p>In this third session, we restructured the simulation functions to keep a record of previously simulated data to make faceted plots for comparison. We learned a lot about debugging.</p>
+<p>The video ends with an unresolved bug. The resolution is to make sure that <code>input$unif_submit</code> is definitely an integer when you add it to the data table. I really don’t know why this fixes it. So the relevant code in the <code>observeEvent()</code> function for <code>unif_submit</code> should be:</p>
+<pre class="r"><code>data &lt;- data.frame(
+    x = x,
+    sample = as.integer(input$unif_submit),
+    n = input$unif_n,
+    min = input$unif_min,
+    max = input$unif_max
+)</code></pre>
+<p>To do:</p>
+<ul>
+<li>Update the norm and binomial functions to display multiple plots</li>
+<li>Make your ggplots prettier</li>
+<li>Make it handle plots with different parameters well. You can either give all facets the same values, or set the axes to vary by facet (or you can give users the option to choose which)</li>
+<li>Think about how you’d want to visualise these distributions and create your own interface options</li>
+</ul>
+<p>Resources:</p>
+<ul>
+<li><a href="https://uofglasgow.zoom.us/rec/share/oQJCmOuAx4TJkZMiEWH6V0Q66921trhkgLMoB0bkIHUnuFgL-_DZrGnAaWvtKW3W.lpgRRxeV6B4wRmrs">session recording</a> (contact Lisa for the password)</li>
+<li>zip file with the <a href="files/sim3.zip">code for our progress</a></li>
+</ul>
+<p>Coding Club will be pausing for the summer, but watch here for a restart in the fall.</p>
 <hr />
 </div>
 </div>
