@@ -1,14 +1,5 @@
 ---
 title: "First Shiny App"
-output:
-  html_document:
-    self_contained: no
-    toc: yes
-    toc_depth: 2
-    code_folding: show
-    toc_float: 
-      collapsed: false
-    number_sections: true
 ---
 
 ```{r setup, include = FALSE}

@@ -1,14 +1,5 @@
 ---
 title: "Second Shiny App"
-output:
-  html_document:
-    self_contained: no
-    toc: yes
-    toc_depth: 2
-    code_folding: show
-    toc_float: 
-      collapsed: false
-    number_sections: true
 ---
 
 In this tutorial, we're going to start with the blank framework for a shiny app. We will add some text, input control [widgets](defs.html#widget), output text, and an output plot.

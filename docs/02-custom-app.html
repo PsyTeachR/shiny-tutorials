@@ -13,31 +13,24 @@
 
 <title>Second Shiny App</title>
 
-<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/header-attrs-2.10.6/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+<script src="site_libs/bs3compat-0.2.5.1/tabs.js"></script>
+<script src="site_libs/bs3compat-0.2.5.1/bs3compat.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<meta property="og:title" content="Methods & MetaScience Seminar">
+<meta property="og:description" content="Schedule and material for the Methods & MetaScience seminar series for the University of Glasgow's Institute of Neuroscience and Psychology">
+<meta property="og:image" content="https://psyteachr.github.io/images/twitter/mms.png">
+<meta property="og:url" content="https://psyteachr.github.io/mms/">
+<meta property="twitter:card" content="summary_large_image">
+<link rel="shortcut icon" href="https://psyteachr.github.io/images/mms_hex.png">
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -63,7 +56,6 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="shiny.css" type="text/css" />
 
 
 
@@ -222,79 +214,7 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
-
-
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
 
 
 
@@ -304,16 +224,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-sm-12 col-md-4 col-lg-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-sm-12 col-md-8 col-lg-9">
 
 
 
@@ -332,7 +242,7 @@ div.tocify {
       <ul class="nav navbar-nav">
         <li>
   <a href="/">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
     psyTeachR
   </a>
@@ -346,14 +256,6 @@ div.tocify {
 </div><!--/.navbar -->
 
 <div id="header">
-
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
 
 
 
@@ -369,16 +271,16 @@ div.tocify {
 <li>Packages: <code>shiny</code>, <code>ggplot2</code>, <code>dplyr</code></li>
 <li>Time: ~ 20 minutes</li>
 </ul>
-<div id="create-a-framework-app" class="section level1" number="1">
-<h1 number="1"><span class="header-section-number">1</span> Create a Framework App</h1>
+<div id="create-a-framework-app" class="section level1">
+<h1>Create a Framework App</h1>
 <p><input type="checkbox" class="progress"></p>
-<div id="set-up-the-project" class="section level2" number="1.1">
-<h2 number="1.1"><span class="header-section-number">1.1</span> Set up the project</h2>
+<div id="set-up-the-project" class="section level2">
+<h2>Set up the project</h2>
 <p>See the <a href="01-first-app.html">first tutorial</a> for how to do this. Name it <code>effect_guess</code>.</p>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="add-blank-framework" class="section level2" number="1.2">
-<h2 number="1.2"><span class="header-section-number">1.2</span> Add blank framework</h2>
+<div id="add-blank-framework" class="section level2">
+<h2>Add blank framework</h2>
 <p>If you set up a default Shiny project in RStudio, it will create a file called <code>app.R</code> with the demo app. Replace the text (or delete the file and create a new file called <code>app.R</code>) with the framework below. Save it and run the app.</p>
 <pre class="r"><code># Libraries ----
 library(shiny)
@@ -416,8 +318,8 @@ In RStudio, you can display the document outline using <code>shift-cmd-O</code> 
 </p>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="replace-default-text" class="section level2" number="1.3">
-<h2 number="1.3"><span class="header-section-number">1.3</span> Replace default text</h2>
+<div id="replace-default-text" class="section level2">
+<h2>Replace default text</h2>
 <p>In this app, we’re going to show a plot with a random effect size for a between-group design with a random N and ask the user to guess the effect size). So the first thing you should do is explain what your app is doing in the explanatory text. You can also add a title.</p>
 <p class="alert alert-info">
 As always, run your app after every unit of changes. It’s easier to catch typos and mistakes if you’ve only changed a little bit since the last time you successfully ran the app.
@@ -440,11 +342,11 @@ As always, run your app after every unit of changes. It’s easier to catch typo
   )</code></pre>
 </div>
 </div>
-<div id="add-input-and-output" class="section level1" number="2">
-<h1 number="2"><span class="header-section-number">2</span> Add Input and Output</h1>
+<div id="add-input-and-output" class="section level1">
+<h1>Add Input and Output</h1>
 <p><input type="checkbox" class="progress"></p>
-<div id="sliderinput" class="section level2" number="2.1">
-<h2 number="2.1"><span class="header-section-number">2.1</span> sliderInput</h2>
+<div id="sliderinput" class="section level2">
+<h2>sliderInput</h2>
 <p>We’re going to use the <code>sliderInput</code> function to let the user guess the effect size in the plot.</p>
 <pre class="r"><code>    sidebarPanel(
       # . . d_guess slide ----
@@ -456,8 +358,8 @@ I use periods/full stops (<code>.</code>) to indent the document outline comment
 </p>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="actionbutton" class="section level2" number="2.2">
-<h2 number="2.2"><span class="header-section-number">2.2</span> actionButton</h2>
+<div id="actionbutton" class="section level2">
+<h2>actionButton</h2>
 <p>We want the user to be able to create a new simulated dataset, so we can make a button that generates a new dataset, graphs it, and resets the effect size slider. Add this widget function after the <code>sliderInput</code> widget function (and run the app).</p>
 <pre class="r"><code>    sidebarPanel(
       # . . d_guess slide ----
@@ -486,8 +388,8 @@ Error : Error sourcing /Users/lisad/apps/custom-app/app.R</code></pre>
 </div>
 <p><input type="checkbox" class="progress"></p>
 </div>
-<div id="textoutput" class="section level2" number="2.3">
-<h2 number="2.3"><span class="header-section-number">2.3</span> textOutput</h2>
+<div id="textoutput" class="section level2">
+<h2>textOutput</h2>
 <p>Outputs normally go in the main panel (although they don’t have to). You can use the function <code>textOutput</code> to interactively display some text to the user. We want to let people know how many observations are in the randomly generated data, so we’ll use a <code>textOutput</code> function with the ID <code>"current_n"</code>.</p>
 <pre class="r"><code>    mainPanel(
       # . . current_n output ----
@@ -499,8 +401,6 @@ Error : Error sourcing /Users/lisad/apps/custom-app/app.R</code></pre>
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -532,38 +432,7 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
-<script>
-$(document).ready(function ()  {
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -1,15 +1,5 @@
 ---
 title: "Tools for Science"
-output:
-  html_document:
-    self_contained: no
-    toc: yes
-    toc_depth: 2
-    code_folding: show
-    toc_float: 
-      collapsed: false
-    number_sections: true
-    css: 03-science-tools.css
 ---
 
 <style type="text/css">
@@ -19,17 +9,6 @@ output:
 </style>
 
 ```{r styling, results='asis', echo = F}
-# code to only number to the depth of the toc minus 1
-# i.e. if toc_depth is 2, only h1 will be numbered
-toc_depth <- rmarkdown::metadata$output$html_document$toc_depth
-sel <- paste0("h",(toc_depth):10, collapse = " > span, ")
-cat(paste0("
-<style>",
-sel, " > .header-section-number {
-  display: none;
-}
-</style>
-"))
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 

@@ -1,17 +1,54 @@
 ---
 title: "Coding Club"
-output:
-  html_document:
-    self_contained: no
-    toc: no
-    toc_depth: 2
-    code_folding: show
-    toc_float: 
-      collapsed: false
-    number_sections: false
 ---
 
 Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You don't need to have any experience apart from basic R. If you can complete the [intro shiny tutorial](01-first-app.html) then you should be fine.
+
+## Database App
+
+In autumn 2021, we'll be making a custom web app for searching, visualising and updating a list of anything you're interested in. The focus will be learning by doing, but the sessions will be supported by material from [Building Web Apps with R Shiny](https://debruine.github.io/shinyintro/).
+
+### 1. Setting Up the Framework 
+
+2021-10-06 14:00 (Europe/London)
+
+Before the session:
+
+1. Check out the [demo app](https://shiny.psy.gla.ac.uk/debruine/seen/)
+2. Bookmark the [book](https://debruine.github.io/shinyintro/)
+3. Install the {shinyintro} package
+
+```{r, eval = FALSE}
+# you may have to install devtools first with 
+# install.packages("devtools")
+
+devtools::install_github("debruine/shinyintro")
+```
+
+
+### 2. Reading Data from a GoogleSheet
+
+2021-10-20 14:00 (Europe/London)
+
+### 3. Visualising Data
+
+2021-11-03 14:00 (Europe/London)
+
+### 4. Writing Data to a GoogleSheet
+
+2021-11-17 14:00 (Europe/London)
+
+### 5. Filtering Data
+
+2021-12-01 14:00 (Europe/London)
+
+### 6. Make it Pretty
+
+2021-12-15 14:00 (Europe/London)
+
+---------
+
+# Past Sessions
 
 ## Distribution Simulation App
 
@@ -85,12 +122,6 @@ Resources:
 
 * [session recording](https://uofglasgow.zoom.us/rec/share/oQJCmOuAx4TJkZMiEWH6V0Q66921trhkgLMoB0bkIHUnuFgL-_DZrGnAaWvtKW3W.lpgRRxeV6B4wRmrs) (contact Lisa for the password)
 * zip file with the [code for our  progress](files/sim3.zip)
-
-Coding Club will be pausing for the summer, but watch here for a restart in the fall.
-
----------
-
-# Past Sessions
 
 ## Buzzfeed-style App
 

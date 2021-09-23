@@ -13,28 +13,24 @@
 
 <title>Coding Club</title>
 
-<script src="site_libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<style>h1 {font-size: 34px;}
-       h1.title {font-size: 38px;}
-       h2 {font-size: 30px;}
-       h3 {font-size: 24px;}
-       h4 {font-size: 18px;}
-       h5 {font-size: 16px;}
-       h6 {font-size: 12px;}
-       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
-       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/header-attrs-2.10.6/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script>
+<script src="site_libs/bs3compat-0.2.5.1/tabs.js"></script>
+<script src="site_libs/bs3compat-0.2.5.1/bs3compat.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<meta property="og:title" content="Methods & MetaScience Seminar">
+<meta property="og:description" content="Schedule and material for the Methods & MetaScience seminar series for the University of Glasgow's Institute of Neuroscience and Psychology">
+<meta property="og:image" content="https://psyteachr.github.io/images/twitter/mms.png">
+<meta property="og:url" content="https://psyteachr.github.io/mms/">
+<meta property="twitter:card" content="summary_large_image">
+<link rel="shortcut icon" href="https://psyteachr.github.io/images/mms_hex.png">
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -60,7 +56,6 @@ if (window.hljs) {
 
 
 
-<link rel="stylesheet" href="shiny.css" type="text/css" />
 
 
 
@@ -219,9 +214,6 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
 
 
 
@@ -250,7 +242,7 @@ $(document).ready(function () {
       <ul class="nav navbar-nav">
         <li>
   <a href="/">
-    <span class="fas fa-home"></span>
+    <span class="fa fa-home"></span>
      
     psyTeachR
   </a>
@@ -265,14 +257,6 @@ $(document).ready(function () {
 
 <div id="header">
 
-<div class="btn-group pull-right float-right">
-<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
-<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
-<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore">Coding Club</h1>
@@ -281,9 +265,50 @@ $(document).ready(function () {
 
 
 <p>Coding club is meant to build coding skills in R, HTML, CSS, and JavaScript. You don’t need to have any experience apart from basic R. If you can complete the <a href="01-first-app.html">intro shiny tutorial</a> then you should be fine.</p>
+<div id="database-app" class="section level2">
+<h2>Database App</h2>
+<p>In autumn 2021, we’ll be making a custom web app for searching, visualising and updating a list of anything you’re interested in. The focus will be learning by doing, but the sessions will be supported by material from <a href="https://debruine.github.io/shinyintro/">Building Web Apps with R Shiny</a>.</p>
+<div id="setting-up-the-framework" class="section level3">
+<h3>1. Setting Up the Framework</h3>
+<p>2021-10-06 14:00 (Europe/London)</p>
+<p>Before the session:</p>
+<ol style="list-style-type: decimal">
+<li>Check out the <a href="https://shiny.psy.gla.ac.uk/debruine/seen/">demo app</a></li>
+<li>Bookmark the <a href="https://debruine.github.io/shinyintro/">book</a></li>
+<li>Install the {shinyintro} package</li>
+</ol>
+<pre class="r"><code># you may have to install devtools first with 
+# install.packages(&quot;devtools&quot;)
+
+devtools::install_github(&quot;debruine/shinyintro&quot;)</code></pre>
+</div>
+<div id="reading-data-from-a-googlesheet" class="section level3">
+<h3>2. Reading Data from a GoogleSheet</h3>
+<p>2021-10-20 14:00 (Europe/London)</p>
+</div>
+<div id="visualising-data" class="section level3">
+<h3>3. Visualising Data</h3>
+<p>2021-11-03 14:00 (Europe/London)</p>
+</div>
+<div id="writing-data-to-a-googlesheet" class="section level3">
+<h3>4. Writing Data to a GoogleSheet</h3>
+<p>2021-11-17 14:00 (Europe/London)</p>
+</div>
+<div id="filtering-data" class="section level3">
+<h3>5. Filtering Data</h3>
+<p>2021-12-01 14:00 (Europe/London)</p>
+</div>
+<div id="make-it-pretty" class="section level3">
+<h3>6. Make it Pretty</h3>
+<p>2021-12-15 14:00 (Europe/London)</p>
+<hr />
+</div>
+</div>
+<div id="past-sessions" class="section level1">
+<h1>Past Sessions</h1>
 <div id="distribution-simulation-app" class="section level2">
 <h2>Distribution Simulation App</h2>
-<div id="setting-up-the-framework" class="section level3">
+<div id="setting-up-the-framework-1" class="section level3">
 <h3>1. Setting Up the Framework</h3>
 <p>2021-05-12 14:00 (Europe/London)</p>
 <ol style="list-style-type: decimal">
@@ -348,15 +373,11 @@ $(document).ready(function () {
 <li><a href="https://uofglasgow.zoom.us/rec/share/oQJCmOuAx4TJkZMiEWH6V0Q66921trhkgLMoB0bkIHUnuFgL-_DZrGnAaWvtKW3W.lpgRRxeV6B4wRmrs">session recording</a> (contact Lisa for the password)</li>
 <li>zip file with the <a href="files/sim3.zip">code for our progress</a></li>
 </ul>
-<p>Coding Club will be pausing for the summer, but watch here for a restart in the fall.</p>
-<hr />
 </div>
 </div>
-<div id="past-sessions" class="section level1">
-<h1>Past Sessions</h1>
 <div id="buzzfeed-style-app" class="section level2">
 <h2>Buzzfeed-style App</h2>
-<div id="setting-up-the-framework-1" class="section level3">
+<div id="setting-up-the-framework-2" class="section level3">
 <h3>1. Setting Up the Framework</h3>
 <p>2021-03-17 14:00 (Europe/London)</p>
 <ol style="list-style-type: decimal">
@@ -478,11 +499,6 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script>
-$(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
-});
-</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
