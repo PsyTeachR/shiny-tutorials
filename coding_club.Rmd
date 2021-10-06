@@ -25,14 +25,38 @@ Before the session:
 devtools::install_github("debruine/shinyintro")
 ```
 
+In this first session, we:
+
+* created a project with the demo shiny app
+* discussed the structure of a shiny app 
+* added a new sliderInput widget for binwidth and changed the plot to a ggplot
+
+Resources:
+
+* [session recording](https://uofglasgow.zoom.us/rec/share/uaZUUUVZfDRK-frdddapJ1ISfZcLSQa9ycRmU_6xVaA9h_A_orkqgayH8nHexNPD.0WQv5U5sm5Zpt3dp?startTime=1633524211000) (contact Lisa for the password)
+* zip file with the [code for our  progress](files/demoapp.zip)
+
 
 ### 2. Reading Data from a GoogleSheet
 
 2021-10-20 14:00 (Europe/London)
 
+Before the session:
+
+* make sure you have the R packages shiny, shinydashboard, and tidyverse (these will already be installed if you installed the shinyintro package as mentioned in week 1)
+
+In this second session, we will:
+
+* make a Google form to collect data about something fun
+* set up the UI (user interface) for our app
+
 ### 3. Visualising Data
 
 2021-11-03 14:00 (Europe/London)
+
+In this third session, we ill:
+
+* create an interactive plot that visualises the form data
 
 ### 4. Writing Data to a GoogleSheet
 
